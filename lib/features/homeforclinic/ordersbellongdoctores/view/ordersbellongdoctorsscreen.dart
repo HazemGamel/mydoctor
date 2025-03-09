@@ -13,7 +13,7 @@ class Ordersbellongdoctorsscreen extends StatelessWidget {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
+        preferredSize: const Size.fromHeight(80),
         child: Container(
           decoration: const BoxDecoration(
             color: AppColors.primary,
@@ -25,7 +25,7 @@ class Ordersbellongdoctorsscreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -77,7 +77,9 @@ class Ordersbellongdoctorsscreen extends StatelessWidget {
             Expanded(
               flex: 1,
               child: _buildStatusCard(
-                ontap: () {},
+                ontap: () {
+                  Get.toNamed(AppRouter.kAcceptedordersfordoctorscreen);
+                },
                 title: "Accepted Orders",
                 color1: Colors.green.shade600,
                 color2: Colors.green.shade300,
@@ -88,7 +90,9 @@ class Ordersbellongdoctorsscreen extends StatelessWidget {
             Expanded(
               flex: 1,
               child: _buildStatusCard(
-                ontap: () {},
+                ontap: () {
+                  Get.toNamed(AppRouter.kRejectedordersfordoctorscreen);
+                },
                 title: "Rejected Orders",
                 color1: Colors.red.shade600,
                 color2: Colors.red.shade300,
@@ -127,7 +131,7 @@ Widget _buildStatusCard({
           BoxShadow(
             color: color1.withOpacity(0.5),
             blurRadius: 8,
-            offset: Offset(2, 4),
+            offset: const Offset(2, 4),
           ),
         ],
       ),
@@ -140,14 +144,14 @@ Widget _buildStatusCard({
             child: Text(
               title,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
           ),
-          Icon(Icons.arrow_forward_ios, size: 24, color: Colors.white),
+          const Icon(Icons.arrow_forward_ios, size: 24, color: Colors.white),
         ],
       ),
     ),

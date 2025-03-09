@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:mydoctor/core/app_routes/approutes.dart';
 import 'package:mydoctor/core/utilies/assets.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
@@ -13,7 +15,7 @@ class Bookingforclinicscreen extends StatelessWidget {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
+        preferredSize: const Size.fromHeight(80),
         child: Container(
           decoration: const BoxDecoration(
             color: AppColors.primary,
@@ -25,7 +27,7 @@ class Bookingforclinicscreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -61,6 +63,9 @@ class Bookingforclinicscreen extends StatelessWidget {
             Expanded(
               flex: 1,
               child: _buildStatusCard(
+                ontap: () {
+                  Get.toNamed(AppRouter.kWaitingordersforalldoctorsscree);
+                },
                 title: "Waiting Orders",
                 color1: Colors.yellow.shade600,
                 color2: Colors.orange.shade400,
@@ -71,6 +76,9 @@ class Bookingforclinicscreen extends StatelessWidget {
             Expanded(
               flex: 1,
               child: _buildStatusCard(
+                ontap: () {
+                  Get.toNamed(AppRouter.kAcceptedordersforalldoctorsscreen);
+                },
                 title: "Accepted Orders",
                 color1: Colors.green.shade600,
                 color2: Colors.green.shade300,
@@ -81,6 +89,9 @@ class Bookingforclinicscreen extends StatelessWidget {
             Expanded(
               flex: 1,
               child: _buildStatusCard(
+                ontap: () {
+                  Get.toNamed(AppRouter.kRejectedordersforalldoctorsscreen);
+                },
                 title: "Rejected Orders",
                 color1: Colors.red.shade600,
                 color2: Colors.red.shade300,
@@ -101,43 +112,47 @@ Widget _buildStatusCard({
   required Color color2,
   required IconData icon,
   required double screenWidth,
+  required Function()? ontap,
 }) {
-  return Container(
-    width: screenWidth * 0.95, // 90% of screen width
-    margin: const EdgeInsets.symmetric(vertical: 8),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(15),
-      gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [color1, color2],
-      ),
-      boxShadow: [
-        BoxShadow(
-          color: color1.withOpacity(0.5),
-          blurRadius: 8,
-          offset: Offset(2, 4),
+  return GestureDetector(
+    onTap: ontap,
+    child: Container(
+      width: screenWidth * 0.95, // 90% of screen width
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [color1, color2],
         ),
-      ],
-    ),
-    padding: const EdgeInsets.all(16),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Icon(icon, size: 30, color: Colors.white),
-        Expanded(
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: color1.withOpacity(0.5),
+            blurRadius: 8,
+            offset: const Offset(2, 4),
+          ),
+        ],
+      ),
+      padding: const EdgeInsets.all(16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Icon(icon, size: 30, color: Colors.white),
+          Expanded(
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
-        ),
-        Icon(Icons.arrow_forward_ios, size: 24, color: Colors.white),
-      ],
+          const Icon(Icons.arrow_forward_ios, size: 24, color: Colors.white),
+        ],
+      ),
     ),
   );
 }

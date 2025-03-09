@@ -6,8 +6,13 @@ import 'package:mydoctor/features/auth/forgetpassword/view/otpscreen.dart';
 import 'package:mydoctor/features/auth/user/login/view/userloginscreen.dart';
 import 'package:mydoctor/features/auth/user/register/view/userregisterscreen.dart';
 import 'package:mydoctor/features/homeforclinic/doctorsforclinics/view/doctorsforclinicsscreen.dart';
+import 'package:mydoctor/features/homeforclinic/ordersbellongdoctor/view/acceptedordersfordoctorscreen.dart';
+import 'package:mydoctor/features/homeforclinic/ordersbellongdoctor/view/rejectedordersfordoctorscreen.dart';
 import 'package:mydoctor/features/homeforclinic/ordersbellongdoctor/view/waitingordersfordoctorscreen.dart';
 import 'package:mydoctor/features/homeforclinic/ordersbellongdoctores/view/ordersbellongdoctorsscreen.dart';
+import 'package:mydoctor/features/homeforclinic/ordersforalldoctorsinclinic/view/acceptedordersforalldoctorsscreen.dart';
+import 'package:mydoctor/features/homeforclinic/ordersforalldoctorsinclinic/view/rejectedordersforalldoctorsscreen.dart';
+import 'package:mydoctor/features/homeforclinic/ordersforalldoctorsinclinic/view/waitingordersforalldoctorsscree.dart';
 import 'package:mydoctor/features/homeforclinic/view/bookingforclinicscreen.dart';
 import 'package:mydoctor/features/homeforclinic/view/homeforclinicscreen.dart';
 import 'package:mydoctor/features/homeforclinic/view/mainhomeforclinicscreen.dart';
@@ -71,6 +76,19 @@ class AppRouter {
 
   static const String kWaitingordersfordoctorScreen =
       '/kWaitingordersfordoctorScreen';
+
+  static const String kAcceptedordersfordoctorscreen =
+      '/kAcceptedordersfordoctorscreen';
+  static const String kRejectedordersfordoctorscreen =
+      '/kRejectedordersfordoctorscreen';
+
+  //orders for all doctors
+  static const String kWaitingordersforalldoctorsscree =
+      '/kWaitingordersforalldoctorsscree';
+  static const String kAcceptedordersforalldoctorsscreen =
+      '/kAcceptedordersforalldoctorsscreen';
+  static const String kRejectedordersforalldoctorsscreen =
+      '/kRejectedordersforalldoctorsscreen';
 }
 
 List<GetPage<dynamic>>? routes = [
@@ -213,6 +231,40 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRouter.kWaitingordersfordoctorScreen,
     page: () => const WaitingordersfordoctorScreen(),
+    transition: Transition.rightToLeftWithFade, // Set default transition
+    transitionDuration: const Duration(milliseconds: 600),
+  ),
+
+  GetPage(
+    name: AppRouter.kAcceptedordersfordoctorscreen,
+    page: () => const Acceptedordersfordoctorscreen(),
+    transition: Transition.rightToLeftWithFade, // Set default transition
+    transitionDuration: const Duration(milliseconds: 600),
+  ),
+
+  GetPage(
+    name: AppRouter.kRejectedordersfordoctorscreen,
+    page: () => const Rejectedordersfordoctorscreen(),
+    transition: Transition.rightToLeftWithFade, // Set default transition
+    transitionDuration: const Duration(milliseconds: 600),
+  ),
+
+  //orders for all doctors
+  GetPage(
+    name: AppRouter.kWaitingordersforalldoctorsscree,
+    page: () => const Waitingordersforalldoctorsscree(),
+    transition: Transition.rightToLeftWithFade, // Set default transition
+    transitionDuration: const Duration(milliseconds: 600),
+  ),
+  GetPage(
+    name: AppRouter.kAcceptedordersforalldoctorsscreen,
+    page: () => const Acceptedordersforalldoctorsscreen(),
+    transition: Transition.rightToLeftWithFade, // Set default transition
+    transitionDuration: const Duration(milliseconds: 600),
+  ),
+  GetPage(
+    name: AppRouter.kRejectedordersforalldoctorsscreen,
+    page: () => const Rejectedordersforalldoctorsscreen(),
     transition: Transition.rightToLeftWithFade, // Set default transition
     transitionDuration: const Duration(milliseconds: 600),
   ),

@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
 
-class WaitingordersfordoctorScreen extends StatelessWidget {
-  const WaitingordersfordoctorScreen({super.key});
+class Rejectedordersfordoctorscreen extends StatelessWidget {
+  const Rejectedordersfordoctorscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class WaitingordersfordoctorScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Waiting Orders",
+                      "Rejected Orders",
                       style:
                           Styles.textStyle30.copyWith(color: AppColors.wight),
                     ),
@@ -86,11 +88,11 @@ class CustomItemForWaitingOrders extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Colors.yellow, Colors.yellow.withOpacity(0.5)],
+            colors: [AppColors.red, AppColors.red.withOpacity(0.5)],
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.yellow.withOpacity(0.5),
+              color: AppColors.red.withOpacity(0.5),
               blurRadius: 8,
               offset: const Offset(2, 4),
             ),
@@ -120,7 +122,7 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                   child: Text(
                     " : 1 ",
                     style: Styles.textStyle24.copyWith(
-                        fontWeight: FontWeight.normal, color: AppColors.black),
+                        fontWeight: FontWeight.normal, color: AppColors.wight),
                   ),
                 ),
               ],
@@ -145,7 +147,7 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                   child: Text(
                     " : Ahmed Mohamed ",
                     style: Styles.textStyle24.copyWith(
-                        fontWeight: FontWeight.normal, color: AppColors.black),
+                        fontWeight: FontWeight.normal, color: AppColors.wight),
                   ),
                 ),
               ],
@@ -170,18 +172,22 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        " : 123456789 ",
-                        style: Styles.textStyle24.copyWith(
-                            fontWeight: FontWeight.normal,
-                            color: AppColors.black),
+                      Expanded(
+                        child: Text(
+                          " : 1234567895",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Styles.textStyle24.copyWith(
+                              fontWeight: FontWeight.normal,
+                              color: AppColors.wight),
+                        ),
                       ),
                       IconButton(
                           onPressed: () {},
                           icon: const Icon(
                             Icons.phone,
                             size: 30,
-                            color: AppColors.primary,
+                            color: AppColors.wight,
                           ))
                     ],
                   ),
@@ -202,24 +208,7 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                         color: AppColors.primary),
                     child: Center(
                         child: Text(
-                      "Approve",
-                      style:
-                          Styles.textStyle24.copyWith(color: AppColors.wight),
-                    )),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 40,
-                    width: 100,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: AppColors.wight),
-                        color: AppColors.red),
-                    child: Center(
-                        child: Text(
-                      "Reject",
+                      "Remove",
                       style:
                           Styles.textStyle24.copyWith(color: AppColors.wight),
                     )),

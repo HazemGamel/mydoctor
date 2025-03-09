@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
 
-class WaitingordersfordoctorScreen extends StatelessWidget {
-  const WaitingordersfordoctorScreen({super.key});
+class Waitingordersforalldoctorsscree extends StatelessWidget {
+  const Waitingordersforalldoctorsscree({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -125,6 +125,7 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                 ),
               ],
             ),
+            const Divider(),
             Row(
               children: [
                 const Icon(
@@ -150,6 +151,59 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                 ),
               ],
             ),
+            const Divider(),
+            Row(
+              children: [
+                const Icon(
+                  Icons.person,
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  "Doctor Name",
+                  style: Styles.textStyle24.copyWith(
+                      fontWeight: FontWeight.bold, color: AppColors.black),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Expanded(
+                  child: Text(
+                    " : Mohamed abaas ",
+                    style: Styles.textStyle24.copyWith(
+                        fontWeight: FontWeight.normal, color: AppColors.black),
+                  ),
+                ),
+              ],
+            ),
+            const Divider(),
+            Row(
+              children: [
+                const Icon(
+                  Icons.medical_services,
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  "Clinic Name",
+                  style: Styles.textStyle24.copyWith(
+                      fontWeight: FontWeight.bold, color: AppColors.black),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Expanded(
+                  child: Text(
+                    " : El esra ",
+                    style: Styles.textStyle24.copyWith(
+                        fontWeight: FontWeight.normal, color: AppColors.black),
+                  ),
+                ),
+              ],
+            ),
+            const Divider(),
             Row(
               children: [
                 const Icon(
