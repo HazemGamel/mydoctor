@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mydoctor/core/utilies/assets.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
@@ -97,7 +98,7 @@ class CustomNotificationsItem extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        "wellcom",
+                        "153".tr,
                         style: Styles.textStyle20
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
@@ -112,7 +113,7 @@ class CustomNotificationsItem extends StatelessWidget {
                 ],
               ),
               Text(
-                "Your request has been approved and you will be contacted as soon as possible.",
+                "154".tr,
                 style: Styles.textStyle16.copyWith(
                     fontWeight: FontWeight.normal, color: AppColors.grey),
                 maxLines: 2,

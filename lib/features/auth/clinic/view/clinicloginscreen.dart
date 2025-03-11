@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mydoctor/core/app_routes/approutes.dart';
 import 'package:mydoctor/core/components/auth/custombuttonauth.dart';
 import 'package:mydoctor/core/components/auth/customtextformfield.dart';
 import 'package:mydoctor/core/components/auth/customtexttitle.dart';
@@ -64,9 +65,11 @@ class Clinicloginscreen extends StatelessWidget {
                   ),
                   CustomButtonAuth(
                     textlogin: "2".tr,
-                    onpress: () {},
+                    onpress: () {
+                      Get.offAllNamed(AppRouter.kMainHomeforclinicscreen);
+                    },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                 ],

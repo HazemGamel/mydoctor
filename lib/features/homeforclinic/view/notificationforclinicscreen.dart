@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:mydoctor/core/utilies/assets.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
@@ -11,7 +12,7 @@ class Notificationforclinicscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
+        preferredSize: const Size.fromHeight(80),
         child: Container(
           decoration: const BoxDecoration(
             color: AppColors.primary,
@@ -23,7 +24,7 @@ class Notificationforclinicscreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -40,7 +41,7 @@ class Notificationforclinicscreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Notifications",
+                      "69".tr,
                       style:
                           Styles.textStyle30.copyWith(color: AppColors.wight),
                     ),
@@ -57,7 +58,7 @@ class Notificationforclinicscreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return CustomNotificationsItemforclinic();
+                return const CustomNotificationsItemforclinic();
               },
               childCount: 3, // Number of items in the list
             ),
@@ -91,14 +92,14 @@ class CustomNotificationsItemforclinic extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.notifications,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
                       Text(
-                        "wellcom",
+                        "153".tr,
                         style: Styles.textStyle20
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
@@ -106,14 +107,14 @@ class CustomNotificationsItemforclinic extends StatelessWidget {
                   ),
                   IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.close,
                         color: Colors.red,
                       ))
                 ],
               ),
               Text(
-                "There is a request from the patient Ahmed and it is waiting for approval.",
+                "173".tr,
                 style: Styles.textStyle16.copyWith(
                     fontWeight: FontWeight.normal, color: AppColors.grey),
                 maxLines: 2,

@@ -12,7 +12,7 @@ class Clinicdetailsforuserscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
+        preferredSize: const Size.fromHeight(80),
         child: Container(
           decoration: const BoxDecoration(
             color: AppColors.primary,
@@ -24,7 +24,7 @@ class Clinicdetailsforuserscreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -37,7 +37,7 @@ class Clinicdetailsforuserscreen extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       child: Text(
-                        "Back",
+                        "158".tr,
                         style: Styles.textStyle18.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -64,23 +64,26 @@ class Clinicdetailsforuserscreen extends StatelessWidget {
           child: CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
-                child: Text(
-                  "Doctors For The Clinic",
-                  style:
-                      Styles.textStyle24.copyWith(fontWeight: FontWeight.bold),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "160".tr,
+                    style: Styles.textStyle24
+                        .copyWith(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    return CustomItemForDoctorsInClinc();
+                    return const CustomItemForDoctorsInClinc();
                   },
                   childCount: 4, // Number of items in the list
                 ),
               ),
               SliverToBoxAdapter(
                 child: Text(
-                  "Location For The Clinic",
+                  "148".tr,
                   style:
                       Styles.textStyle24.copyWith(fontWeight: FontWeight.bold),
                 ),
@@ -101,21 +104,21 @@ class Clinicdetailsforuserscreen extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.location_on,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               Text(
-                                "Location",
+                                "161".tr,
                                 style: Styles.textStyle20
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
                           Text(
-                            "  egypt , assuit , 23 streat of weal",
+                            "145".tr,
                             style: Styles.textStyle16.copyWith(
                                 fontWeight: FontWeight.normal,
                                 color: AppColors.grey),
@@ -187,7 +190,7 @@ class Clinicdetailsforuserscreen extends StatelessWidget {
 //                             overflow: TextOverflow.ellipsis,
 //                           ),
 //                           Text(
-//                             "egypt ,assuit ",
+//                             "Jordan Irbid ",
 //                             style: Styles.textStyle14
 //                                 .copyWith(color: AppColors.grey, fontSize: 14),
 //                             maxLines: 1,
@@ -219,8 +222,8 @@ class CustomItemForDoctorsInClinc extends StatelessWidget {
       child: Card(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
-            side: BorderSide(color: AppColors.black)),
-        margin: EdgeInsets.only(bottom: 10),
+            side: const BorderSide(color: AppColors.black)),
+        margin: const EdgeInsets.only(bottom: 10),
         child: Stack(
           children: [
             ClipRRect(
@@ -234,7 +237,7 @@ class CustomItemForDoctorsInClinc extends StatelessWidget {
             ),
             Container(
               height: 200,
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 gradient: LinearGradient(
@@ -243,26 +246,27 @@ class CustomItemForDoctorsInClinc extends StatelessWidget {
                   colors: [Colors.black.withOpacity(0.7), Colors.transparent],
                 ),
               ),
-              child: const Align(
+              child: Align(
                 alignment: Alignment.bottomLeft,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "D.mohamed abaas",
+                      "162".tr,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      "Senior Consultant in Dentistry ",
+                      "163".tr,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: Colors.white70, fontSize: 16),
+                      style:
+                          const TextStyle(color: Colors.white70, fontSize: 16),
                     ),
                   ],
                 ),

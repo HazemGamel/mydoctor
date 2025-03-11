@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:mydoctor/core/components/auth/custombuttonauth.dart';
 import 'package:mydoctor/core/utilies/assets.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
@@ -12,7 +13,7 @@ class Profileforuserscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
+        preferredSize: const Size.fromHeight(80),
         child: Container(
           decoration: const BoxDecoration(
             color: AppColors.primary,
@@ -24,7 +25,7 @@ class Profileforuserscreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -37,14 +38,14 @@ class Profileforuserscreen extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       child: Text(
-                        "Back",
+                        "158".tr,
                         style: Styles.textStyle18.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                     Text(
-                      "My Profile",
+                      "46".tr,
                       style:
                           Styles.textStyle30.copyWith(color: AppColors.wight),
                     ),
@@ -64,12 +65,12 @@ class Profileforuserscreen extends StatelessWidget {
               child: Stack(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(4),
+                    padding: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
                       color: AppColors.primary.withOpacity(0.5),
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                       radius: 60,
                       backgroundImage: AssetImage(AppAssets.clinicimage),
                     ),
@@ -80,7 +81,7 @@ class Profileforuserscreen extends StatelessWidget {
                       right: 1,
                       child: IconButton(
                           onPressed: () {},
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.camera_alt,
                             size: 30,
                             color: Colors.grey,
@@ -88,14 +89,14 @@ class Profileforuserscreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Full Name",
+                  "12".tr,
                   style:
                       Styles.textStyle24.copyWith(fontWeight: FontWeight.bold),
                 ),
@@ -110,19 +111,19 @@ class Profileforuserscreen extends StatelessWidget {
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: AppColors.red,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: AppColors.primary,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: AppColors.primary,
                         ),
                       ),
@@ -130,7 +131,7 @@ class Profileforuserscreen extends StatelessWidget {
                       contentPadding:
                           const EdgeInsets.symmetric(horizontal: 20),
                       hintText: "Mohamed abaas",
-                      prefixIcon: Icon(Icons.person),
+                      prefixIcon: const Icon(Icons.person),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -143,7 +144,7 @@ class Profileforuserscreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Email",
+                  "5".tr,
                   style:
                       Styles.textStyle24.copyWith(fontWeight: FontWeight.bold),
                 ),
@@ -158,19 +159,19 @@ class Profileforuserscreen extends StatelessWidget {
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: AppColors.red,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: AppColors.primary,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: AppColors.primary,
                         ),
                       ),
@@ -178,7 +179,7 @@ class Profileforuserscreen extends StatelessWidget {
                       contentPadding:
                           const EdgeInsets.symmetric(horizontal: 20),
                       hintText: "Mohamed@gmail.com",
-                      prefixIcon: Icon(Icons.email),
+                      prefixIcon: const Icon(Icons.email),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -191,7 +192,7 @@ class Profileforuserscreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Phone Number",
+                  "15".tr,
                   style:
                       Styles.textStyle24.copyWith(fontWeight: FontWeight.bold),
                 ),
@@ -206,19 +207,19 @@ class Profileforuserscreen extends StatelessWidget {
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: AppColors.red,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: AppColors.primary,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: AppColors.primary,
                         ),
                       ),
@@ -226,7 +227,7 @@ class Profileforuserscreen extends StatelessWidget {
                       contentPadding:
                           const EdgeInsets.symmetric(horizontal: 20),
                       hintText: "12345678",
-                      prefixIcon: Icon(Icons.call),
+                      prefixIcon: const Icon(Icons.call),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -236,7 +237,7 @@ class Profileforuserscreen extends StatelessWidget {
               ],
             ),
             CustomButtonAuth(
-              textlogin: "Save",
+              textlogin: "23".tr,
               onpress: () {},
             ),
           ],

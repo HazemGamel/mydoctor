@@ -12,7 +12,7 @@ class Settingforuserscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
+        preferredSize: const Size.fromHeight(80),
         child: Container(
           decoration: const BoxDecoration(
             color: AppColors.primary,
@@ -24,7 +24,7 @@ class Settingforuserscreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -41,7 +41,7 @@ class Settingforuserscreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Settings",
+                      "45".tr,
                       style:
                           Styles.textStyle30.copyWith(color: AppColors.wight),
                     ),
@@ -61,11 +61,11 @@ class Settingforuserscreen extends StatelessWidget {
                   Get.toNamed(AppRouter.kProfileforuserscreen);
                 },
                 title: Text(
-                  "profile",
+                  "46".tr,
                   style: Styles.textStyle24.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.primary),
                 ),
-                leading: Icon(
+                leading: const Icon(
                   Icons.person,
                   size: 30,
                 )),
@@ -74,21 +74,21 @@ class Settingforuserscreen extends StatelessWidget {
                   Get.toNamed(AppRouter.kChangelanguageforuserscreen);
                 },
                 title: Text(
-                  "Change Language",
+                  "157".tr,
                   style: Styles.textStyle24.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.primary),
                 ),
-                leading: Icon(
+                leading: const Icon(
                   Icons.language,
                   size: 30,
                 )),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.notification_important,
                 size: 30,
               ),
               title: Text(
-                "Notifications",
+                "52".tr,
                 style: Styles.textStyle24.copyWith(
                     fontWeight: FontWeight.bold, color: AppColors.primary),
               ),
@@ -104,24 +104,34 @@ class Settingforuserscreen extends StatelessWidget {
             ListTile(
                 onTap: () {},
                 title: Text(
-                  "About us",
+                  "54".tr,
                   style: Styles.textStyle24.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.primary),
                 ),
-                leading: Icon(
+                leading: const Icon(
                   Icons.info,
                   size: 30,
                 )),
             ListTile(
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(AppRouter.kCustomservicescreen);
+                },
                 title: Text(
-                  "Contact us",
+                  "55".tr,
                   style: Styles.textStyle24.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.primary),
                 ),
-                leading: Icon(
-                  Icons.contact_support,
-                  size: 30,
+                leading: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(40),
+                      color: AppColors.primary),
+                  child: const Icon(
+                    Icons.chat_rounded,
+                    size: 20,
+                    color: AppColors.wight,
+                  ),
                 )),
             ListTile(
                 onTap: () {
@@ -132,11 +142,10 @@ class Settingforuserscreen extends StatelessWidget {
                         backgroundColor: AppColors.primary.withOpacity(0.5),
                         title: Column(
                           children: [
-                            Icon(Icons.delete,
+                            const Icon(Icons.delete,
                                 size: 50, color: Colors.white), // Delete icon
-                            SizedBox(height: 10),
-                            Text(
-                                "Are You Sure you want to delete your account?",
+                            const SizedBox(height: 10),
+                            Text("122".tr,
                                 textAlign: TextAlign.center,
                                 style: Styles.textStyle24.copyWith(
                                     fontWeight: FontWeight.bold,
@@ -152,13 +161,13 @@ class Settingforuserscreen extends StatelessWidget {
                               onPressed: () {
                                 Navigator.pop(context); // Close dialog
                               },
-                              child: Text("No",
+                              child: Text("156".tr,
                                   style: Styles.textStyle24.copyWith(
                                       color: AppColors.red,
                                       fontWeight: FontWeight.bold)),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Container(
@@ -171,7 +180,7 @@ class Settingforuserscreen extends StatelessWidget {
                                 Navigator.pop(
                                     context); // Close dialog after confirmation
                               },
-                              child: Text("Yes",
+                              child: Text("155".tr,
                                   style: Styles.textStyle24.copyWith(
                                       color: AppColors.wight,
                                       fontWeight: FontWeight.bold)),
@@ -183,22 +192,76 @@ class Settingforuserscreen extends StatelessWidget {
                   );
                 },
                 title: Text(
-                  "delete account",
+                  "121".tr,
                   style: Styles.textStyle24.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.primary),
                 ),
-                leading: Icon(
+                leading: const Icon(
                   Icons.delete,
                   size: 30,
                 )),
             ListTile(
-                onTap: () {},
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        backgroundColor: AppColors.primary.withOpacity(0.5),
+                        title: Column(
+                          children: [
+                            const Icon(Icons.logout,
+                                size: 50, color: Colors.white), // Delete icon
+                            const SizedBox(height: 10),
+                            Text("120".tr,
+                                textAlign: TextAlign.center,
+                                style: Styles.textStyle24.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.wight)),
+                          ],
+                        ),
+                        actions: [
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: AppColors.primary),
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.pop(context); // Close dialog
+                              },
+                              child: Text("156".tr,
+                                  style: Styles.textStyle24.copyWith(
+                                      color: AppColors.red,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: AppColors.primary),
+                            child: TextButton(
+                              onPressed: () {
+                                Get.offAllNamed(AppRouter.kSplashScreen);
+                              },
+                              child: Text("155".tr,
+                                  style: Styles.textStyle24.copyWith(
+                                      color: AppColors.wight,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
                 title: Text(
-                  "Log out",
+                  "56".tr,
                   style: Styles.textStyle24.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.primary),
                 ),
-                leading: Icon(
+                leading: const Icon(
                   Icons.logout,
                   size: 30,
                 )),

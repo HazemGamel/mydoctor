@@ -44,7 +44,7 @@ class Bookingforclinicscreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Orders",
+                      "67".tr,
                       style:
                           Styles.textStyle30.copyWith(color: AppColors.wight),
                     ),
@@ -66,7 +66,7 @@ class Bookingforclinicscreen extends StatelessWidget {
                 ontap: () {
                   Get.toNamed(AppRouter.kWaitingordersforalldoctorsscree);
                 },
-                title: "Waiting Orders",
+                title: "170".tr,
                 color1: Colors.yellow.shade600,
                 color2: Colors.orange.shade400,
                 icon: Icons.access_time,
@@ -79,7 +79,7 @@ class Bookingforclinicscreen extends StatelessWidget {
                 ontap: () {
                   Get.toNamed(AppRouter.kAcceptedordersforalldoctorsscreen);
                 },
-                title: "Accepted Orders",
+                title: "171".tr,
                 color1: Colors.green.shade600,
                 color2: Colors.green.shade300,
                 icon: Icons.check_circle,
@@ -92,7 +92,7 @@ class Bookingforclinicscreen extends StatelessWidget {
                 ontap: () {
                   Get.toNamed(AppRouter.kRejectedordersforalldoctorsscreen);
                 },
-                title: "Rejected Orders",
+                title: "172".tr,
                 color1: Colors.red.shade600,
                 color2: Colors.red.shade300,
                 icon: Icons.cancel,

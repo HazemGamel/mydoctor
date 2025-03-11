@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mydoctor/core/utilies/assets.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
@@ -10,7 +11,7 @@ class Mybookingforuserscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
+        preferredSize: const Size.fromHeight(80),
         child: Container(
           decoration: const BoxDecoration(
             color: AppColors.primary,
@@ -22,7 +23,7 @@ class Mybookingforuserscreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -39,7 +40,7 @@ class Mybookingforuserscreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "My Booking",
+                      "43".tr,
                       style:
                           Styles.textStyle30.copyWith(color: AppColors.wight),
                     ),
@@ -56,7 +57,7 @@ class Mybookingforuserscreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return CustomBookingItem();
+                return const CustomBookingItem();
               },
               childCount: 3, // Number of items in the list
             ),
@@ -76,7 +77,7 @@ class CustomBookingItem extends StatelessWidget {
       color: AppColors.primary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10), // Optional rounded corners
-        side: BorderSide(
+        side: const BorderSide(
           color: Colors.black, // Border color
           width: 2, // Border width
         ),
@@ -101,11 +102,11 @@ class CustomBookingItem extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Clinc Name",
+                    "146".tr,
                     style: Styles.textStyle24.copyWith(
                         fontWeight: FontWeight.bold, color: AppColors.black),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Expanded(
@@ -120,11 +121,11 @@ class CustomBookingItem extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Doctor Name",
+                    "147".tr,
                     style: Styles.textStyle24.copyWith(
                         fontWeight: FontWeight.bold, color: AppColors.black),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Expanded(
@@ -139,16 +140,16 @@ class CustomBookingItem extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Location",
+                    "148".tr,
                     style: Styles.textStyle24.copyWith(
                         fontWeight: FontWeight.bold, color: AppColors.black),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Expanded(
                     child: Text(
-                      " : egypt , assuit ,23 streat  ",
+                      " : Jordan Irbid  ",
                       style: Styles.textStyle24.copyWith(
                           fontWeight: FontWeight.bold, color: AppColors.wight),
                     ),
@@ -158,11 +159,11 @@ class CustomBookingItem extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Phone",
+                    "14".tr,
                     style: Styles.textStyle24.copyWith(
                         fontWeight: FontWeight.bold, color: AppColors.black),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Expanded(
@@ -177,7 +178,7 @@ class CustomBookingItem extends StatelessWidget {
                         ),
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.phone,
                               size: 30,
                               color: AppColors.red,
@@ -190,11 +191,11 @@ class CustomBookingItem extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Booking Case ",
+                    "149".tr,
                     style: Styles.textStyle24.copyWith(
                         fontWeight: FontWeight.bold, color: AppColors.black),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Expanded(
@@ -204,7 +205,7 @@ class CustomBookingItem extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10)),
                       child: Center(
                         child: Text(
-                          "waiting",
+                          "152".tr,
                           style: Styles.textStyle24.copyWith(
                               fontWeight: FontWeight.bold,
                               color: AppColors.black),
@@ -214,17 +215,17 @@ class CustomBookingItem extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 4,
               ),
               Row(
                 children: [
                   Text(
-                    "Booking Case ",
+                    "150".tr,
                     style: Styles.textStyle24.copyWith(
                         fontWeight: FontWeight.bold, color: AppColors.black),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Expanded(
@@ -234,7 +235,7 @@ class CustomBookingItem extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10)),
                       child: Center(
                         child: Text(
-                          "Cancel",
+                          "151".tr,
                           style: Styles.textStyle24.copyWith(
                               fontWeight: FontWeight.bold,
                               color: AppColors.black),

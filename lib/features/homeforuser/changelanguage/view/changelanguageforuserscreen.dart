@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mydoctor/core/components/language/custombutton.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
@@ -10,7 +11,7 @@ class Changelanguageforuserscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
+        preferredSize: const Size.fromHeight(80),
         child: Container(
           decoration: const BoxDecoration(
             color: AppColors.primary,
@@ -22,7 +23,7 @@ class Changelanguageforuserscreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -35,14 +36,14 @@ class Changelanguageforuserscreen extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       child: Text(
-                        "Back",
+                        "158".tr,
                         style: Styles.textStyle18.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                     Text(
-                      "Change Language",
+                      "157".tr,
                       style:
                           Styles.textStyle30.copyWith(color: AppColors.wight),
                     ),
@@ -59,23 +60,23 @@ class Changelanguageforuserscreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(6.0),
             child: Text(
-              "Languages",
+              "159".tr,
               style: Styles.textStyle24.copyWith(fontWeight: FontWeight.bold),
             ),
           ),
-          Divider(
+          const Divider(
             height: 2,
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           CustomButtonLanguage(
             textlang: "عربي",
             onpress: () {},
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           CustomButtonLanguage(

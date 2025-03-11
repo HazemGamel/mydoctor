@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mydoctor/core/app_routes/approutes.dart';
 import 'package:mydoctor/core/components/language/custombutton.dart';
+import 'package:mydoctor/core/localizations/changelocal.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
 
-class Languagescreen extends StatelessWidget {
+class Languagescreen extends GetView<LocalController> {
   const Languagescreen({super.key});
 
   @override
@@ -38,25 +39,27 @@ class Languagescreen extends StatelessWidget {
                 "1".tr,
                 style: Styles.textStyle30,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               CustomButtonLanguage(
                 textlang: "عربي",
                 onpress: () {
+                  controller.changeLang("ar");
+
                   Get.toNamed(
                     AppRouter.kUsertypescreen,
                     // Adjust speed
                   );
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               CustomButtonLanguage(
                 textlang: "English",
                 onpress: () {
-                  // controller.changeLang("en");
+                  controller.changeLang("en");
                   Get.toNamed(AppRouter.kUsertypescreen);
                 },
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
 
@@ -36,14 +37,14 @@ class Rejectedordersfordoctorscreen extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       child: Text(
-                        "Back",
+                        "158".tr,
                         style: Styles.textStyle18.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                     Text(
-                      "Rejected Orders",
+                      "172".tr,
                       style:
                           Styles.textStyle30.copyWith(color: AppColors.wight),
                     ),
@@ -111,7 +112,7 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                   width: 5,
                 ),
                 Text(
-                  "Order Number",
+                  "98".tr,
                   style: Styles.textStyle24.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.black),
                 ),
@@ -136,7 +137,7 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                   width: 5,
                 ),
                 Text(
-                  "Pation Name",
+                  "176".tr,
                   style: Styles.textStyle24.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.black),
                 ),
@@ -161,7 +162,7 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                   width: 5,
                 ),
                 Text(
-                  "Phone",
+                  "14".tr,
                   style: Styles.textStyle24.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.black),
                 ),
@@ -208,7 +209,7 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                         color: AppColors.primary),
                     child: Center(
                         child: Text(
-                      "Remove",
+                      "179".tr,
                       style:
                           Styles.textStyle24.copyWith(color: AppColors.wight),
                     )),

@@ -12,7 +12,7 @@ class Clinicsforuserscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(80),
+          preferredSize: const Size.fromHeight(80),
           child: Container(
             decoration: const BoxDecoration(
               color: AppColors.primary,
@@ -24,7 +24,7 @@ class Clinicsforuserscreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Padding(
@@ -37,14 +37,14 @@ class Clinicsforuserscreen extends StatelessWidget {
                           Navigator.pop(context);
                         },
                         child: Text(
-                          "Back",
+                          "158".tr,
                           style: Styles.textStyle18.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
                       Text(
-                        "dentist",
+                        "142".tr,
                         style:
                             Styles.textStyle30.copyWith(color: AppColors.wight),
                       ),
@@ -66,7 +66,7 @@ class Clinicsforuserscreen extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: Column(
                       children: [
-                        CustomItemForClinics(),
+                        const CustomItemForClinics(),
                         Divider(
                           // Separator between items
                           color: Colors.grey.shade300,
@@ -138,7 +138,7 @@ class Clinicsforuserscreen extends StatelessWidget {
 //                           overflow: TextOverflow.ellipsis,
 //                         ),
 //                         Text(
-//                           "egypt ,assuit ",
+//                           "Jordan Irbid ",
 //                           style: Styles.textStyle14
 //                               .copyWith(color: AppColors.grey, fontSize: 14),
 //                           maxLines: 1,
@@ -178,8 +178,8 @@ class CustomItemForClinics extends StatelessWidget {
       child: Card(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
-            side: BorderSide(color: AppColors.black)),
-        margin: EdgeInsets.only(bottom: 10),
+            side: const BorderSide(color: AppColors.black)),
+        margin: const EdgeInsets.only(bottom: 10),
         child: Stack(
           children: [
             ClipRRect(
@@ -193,7 +193,7 @@ class CustomItemForClinics extends StatelessWidget {
             ),
             Container(
               height: 200,
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 gradient: LinearGradient(
@@ -202,26 +202,27 @@ class CustomItemForClinics extends StatelessWidget {
                   colors: [Colors.black.withOpacity(0.7), Colors.transparent],
                 ),
               ),
-              child: const Align(
+              child: Align(
                 alignment: Alignment.bottomLeft,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "El esra clinic",
+                      "144".tr,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      "egypt , assuit ",
+                      "145".tr,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: Colors.white70, fontSize: 16),
+                      style:
+                          const TextStyle(color: Colors.white70, fontSize: 16),
                     ),
                   ],
                 ),

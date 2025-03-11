@@ -38,14 +38,14 @@ class Ordersbellongdoctorsscreen extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       child: Text(
-                        "Back",
+                        "158".tr,
                         style: Styles.textStyle18.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                     Text(
-                      "My Orders",
+                      "175".tr,
                       style:
                           Styles.textStyle30.copyWith(color: AppColors.wight),
                     ),
@@ -67,7 +67,7 @@ class Ordersbellongdoctorsscreen extends StatelessWidget {
                 ontap: () {
                   Get.toNamed(AppRouter.kWaitingordersfordoctorScreen);
                 },
-                title: "Waiting Orders",
+                title: "170".tr,
                 color1: Colors.yellow.shade600,
                 color2: Colors.orange.shade400,
                 icon: Icons.access_time,
@@ -80,7 +80,7 @@ class Ordersbellongdoctorsscreen extends StatelessWidget {
                 ontap: () {
                   Get.toNamed(AppRouter.kAcceptedordersfordoctorscreen);
                 },
-                title: "Accepted Orders",
+                title: "171".tr,
                 color1: Colors.green.shade600,
                 color2: Colors.green.shade300,
                 icon: Icons.check_circle,
@@ -93,7 +93,7 @@ class Ordersbellongdoctorsscreen extends StatelessWidget {
                 ontap: () {
                   Get.toNamed(AppRouter.kRejectedordersfordoctorscreen);
                 },
-                title: "Rejected Orders",
+                title: "172".tr,
                 color1: Colors.red.shade600,
                 color2: Colors.red.shade300,
                 icon: Icons.cancel,

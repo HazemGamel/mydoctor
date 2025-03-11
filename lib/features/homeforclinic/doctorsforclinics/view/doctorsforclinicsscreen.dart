@@ -12,7 +12,7 @@ class Doctorsforclinicsscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
+        preferredSize: const Size.fromHeight(80),
         child: Container(
           decoration: const BoxDecoration(
             color: AppColors.primary,
@@ -24,7 +24,7 @@ class Doctorsforclinicsscreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -37,14 +37,14 @@ class Doctorsforclinicsscreen extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       child: Text(
-                        "Back",
+                        "158".tr,
                         style: Styles.textStyle18.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                     Text(
-                      "Doctors",
+                      "174".tr,
                       style:
                           Styles.textStyle30.copyWith(color: AppColors.wight),
                     ),
@@ -61,7 +61,7 @@ class Doctorsforclinicsscreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return CustomItemForDoctorsInClinc();
+                return const CustomItemForDoctorsInClinc();
               },
               childCount: 4, // Number of items in the list
             ),
@@ -86,8 +86,8 @@ class CustomItemForDoctorsInClinc extends StatelessWidget {
         child: Card(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
-              side: BorderSide(color: AppColors.black)),
-          margin: EdgeInsets.only(bottom: 10),
+              side: const BorderSide(color: AppColors.black)),
+          margin: const EdgeInsets.only(bottom: 10),
           child: Stack(
             children: [
               ClipRRect(
@@ -101,7 +101,7 @@ class CustomItemForDoctorsInClinc extends StatelessWidget {
               ),
               Container(
                 height: 200,
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   gradient: LinearGradient(
@@ -110,26 +110,27 @@ class CustomItemForDoctorsInClinc extends StatelessWidget {
                     colors: [Colors.black.withOpacity(0.7), Colors.transparent],
                   ),
                 ),
-                child: const Align(
+                child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "D.mohamed abaas",
+                        "162".tr,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "Senior Consultant in Dentistry ",
+                        "163".tr,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(color: Colors.white70, fontSize: 16),
+                        style: const TextStyle(
+                            color: Colors.white70, fontSize: 16),
                       ),
                     ],
                   ),

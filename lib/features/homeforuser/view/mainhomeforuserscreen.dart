@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
+import 'package:badges/badges.dart' as badges;
+
 import 'package:mydoctor/features/homeforuser/controller/mainhomeforuserscreencontroller.dart';
 
 class MainHomeforuserscreen extends StatelessWidget {
@@ -23,7 +25,7 @@ class MainHomeforuserscreen extends StatelessWidget {
           backgroundColor: AppColors.primary.withOpacity(0.7),
           // tabBackgroundColor: Colors.grey.shade200,
           gap: 4,
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
               horizontal: 10, vertical: 12), // navigation bar padding
           tabs: [
             GButton(
@@ -37,6 +39,17 @@ class MainHomeforuserscreen extends StatelessWidget {
             GButton(
               icon: Icons.notification_important,
               text: "69".tr,
+              leading: const badges.Badge(
+                badgeContent: Text(
+                  '3', // Replace with dynamic value
+                  style: TextStyle(color: Colors.white, fontSize: 12),
+                ),
+                badgeStyle: badges.BadgeStyle(
+                  badgeColor: Colors.red,
+                  padding: EdgeInsets.all(6),
+                ),
+                child: Icon(Icons.notification_important),
+              ),
             ),
             GButton(
               icon: Icons.settings,

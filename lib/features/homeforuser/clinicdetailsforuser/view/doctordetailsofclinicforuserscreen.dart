@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mydoctor/core/utilies/assets.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
@@ -10,7 +11,7 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
+        preferredSize: const Size.fromHeight(80),
         child: Container(
           decoration: const BoxDecoration(
             color: AppColors.primary,
@@ -22,7 +23,7 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -35,7 +36,7 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       child: Text(
-                        "Back",
+                        "158".tr,
                         style: Styles.textStyle18.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -66,12 +67,12 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                 child: Stack(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(4),
+                      padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: AppColors.primary.withOpacity(0.5),
                         borderRadius: BorderRadius.circular(100),
                       ),
-                      child: CircleAvatar(
+                      child: const CircleAvatar(
                         radius: 60,
                         backgroundImage: AssetImage(AppAssets.clinicimage),
                       ),
@@ -80,7 +81,7 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: SizedBox(
                 height: 10,
               ),
@@ -88,7 +89,7 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
             SliverToBoxAdapter(
               child: Center(
                 child: Text(
-                  "D.ahmed mohamed",
+                  "162".tr,
                   style: Styles.textStyle14.copyWith(
                       color: AppColors.black,
                       fontSize: 18,
@@ -101,18 +102,22 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
             SliverToBoxAdapter(
               child: Center(
                 child: Text(
-                  "Senior Consultant in Dentistry",
+                  "163".tr,
                   style: Styles.textStyle14
-                      .copyWith(color: AppColors.grey, fontSize: 14),
+                      .copyWith(color: AppColors.grey, fontSize: 16),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),
             SliverToBoxAdapter(
-              child: Text(
-                "Working houres",
-                style: Styles.textStyle24.copyWith(fontWeight: FontWeight.bold),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "164".tr,
+                  style:
+                      Styles.textStyle24.copyWith(fontWeight: FontWeight.bold),
+                ),
               ),
             ),
             SliverToBoxAdapter(
@@ -133,15 +138,15 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.timer,
                                   color: AppColors.primary,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 Text(
-                                  "Saturday",
+                                  "165".tr,
                                   style: Styles.textStyle20.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.primary),
@@ -175,15 +180,15 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.timer,
                                   color: AppColors.primary,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 Text(
-                                  "Saturday",
+                                  "165".tr,
                                   style: Styles.textStyle20.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.primary),
@@ -217,15 +222,15 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.timer,
                                   color: AppColors.primary,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 Text(
-                                  "Saturday",
+                                  "165".tr,
                                   style: Styles.textStyle20.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.primary),
@@ -259,15 +264,15 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.timer,
                                   color: AppColors.primary,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 Text(
-                                  "Saturday",
+                                  "165".tr,
                                   style: Styles.textStyle20.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.primary),
@@ -301,15 +306,15 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.timer,
                                   color: AppColors.primary,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 Text(
-                                  "Saturday",
+                                  "165".tr,
                                   style: Styles.textStyle20.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.primary),
@@ -343,15 +348,15 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.timer,
                                   color: AppColors.primary,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 Text(
-                                  "Saturday",
+                                  "165".tr,
                                   style: Styles.textStyle20.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.primary),
@@ -385,15 +390,15 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.timer,
                                   color: AppColors.primary,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 Text(
-                                  "Saturday",
+                                  "165".tr,
                                   style: Styles.textStyle20.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.primary),
@@ -401,7 +406,7 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                               ],
                             ),
                             Text(
-                              "No work today",
+                              "168".tr,
                               style: Styles.textStyle16.copyWith(
                                   fontWeight: FontWeight.normal,
                                   color: AppColors.black),
@@ -415,7 +420,7 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: SizedBox(
                 height: 10,
               ),
@@ -434,7 +439,7 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            "Booking Now",
+                            "166".tr,
                             style: Styles.textStyle18
                                 .copyWith(color: AppColors.wight),
                           ),
@@ -454,14 +459,14 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                "Call",
+                                "167".tr,
                                 style: Styles.textStyle18
                                     .copyWith(color: AppColors.wight),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Icon(
+                              const Icon(
                                 Icons.call,
                                 color: AppColors.primary,
                               )

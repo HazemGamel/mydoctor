@@ -5,6 +5,7 @@ import 'package:mydoctor/features/auth/forgetpassword/view/newpasswordscreen.dar
 import 'package:mydoctor/features/auth/forgetpassword/view/otpscreen.dart';
 import 'package:mydoctor/features/auth/user/login/view/userloginscreen.dart';
 import 'package:mydoctor/features/auth/user/register/view/userregisterscreen.dart';
+import 'package:mydoctor/features/customerservice/view/customservicescreen.dart';
 import 'package:mydoctor/features/homeforclinic/doctorsforclinics/view/doctorsforclinicsscreen.dart';
 import 'package:mydoctor/features/homeforclinic/ordersbellongdoctor/view/acceptedordersfordoctorscreen.dart';
 import 'package:mydoctor/features/homeforclinic/ordersbellongdoctor/view/rejectedordersfordoctorscreen.dart';
@@ -13,6 +14,7 @@ import 'package:mydoctor/features/homeforclinic/ordersbellongdoctores/view/order
 import 'package:mydoctor/features/homeforclinic/ordersforalldoctorsinclinic/view/acceptedordersforalldoctorsscreen.dart';
 import 'package:mydoctor/features/homeforclinic/ordersforalldoctorsinclinic/view/rejectedordersforalldoctorsscreen.dart';
 import 'package:mydoctor/features/homeforclinic/ordersforalldoctorsinclinic/view/waitingordersforalldoctorsscree.dart';
+import 'package:mydoctor/features/homeforclinic/profileforclinic/view/profileforclinicscreen.dart';
 import 'package:mydoctor/features/homeforclinic/view/bookingforclinicscreen.dart';
 import 'package:mydoctor/features/homeforclinic/view/homeforclinicscreen.dart';
 import 'package:mydoctor/features/homeforclinic/view/mainhomeforclinicscreen.dart';
@@ -89,10 +91,15 @@ class AppRouter {
       '/kAcceptedordersforalldoctorsscreen';
   static const String kRejectedordersforalldoctorsscreen =
       '/kRejectedordersforalldoctorsscreen';
+
+  static const String kProfileforclinicscreen = '/kProfileforclinicscreen';
+
+  //customer service
+  static const String kCustomservicescreen = '/kCustomservicescreen';
 }
 
 List<GetPage<dynamic>>? routes = [
-  GetPage(name: "/", page: () => const Mainhomeforclinicscreen()),
+  GetPage(name: "/", page: () => const SplashScreen()),
   GetPage(name: AppRouter.kLanguagescreen, page: () => const Languagescreen()),
   GetPage(
       name: AppRouter.kUsertypescreen,
@@ -265,6 +272,20 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRouter.kRejectedordersforalldoctorsscreen,
     page: () => const Rejectedordersforalldoctorsscreen(),
+    transition: Transition.rightToLeftWithFade, // Set default transition
+    transitionDuration: const Duration(milliseconds: 600),
+  ),
+  GetPage(
+    name: AppRouter.kProfileforclinicscreen,
+    page: () => const Profileforclinicscreen(),
+    transition: Transition.rightToLeftWithFade, // Set default transition
+    transitionDuration: const Duration(milliseconds: 600),
+  ),
+
+  //customer service
+  GetPage(
+    name: AppRouter.kCustomservicescreen,
+    page: () => const Customservicescreen(),
     transition: Transition.rightToLeftWithFade, // Set default transition
     transitionDuration: const Duration(milliseconds: 600),
   ),

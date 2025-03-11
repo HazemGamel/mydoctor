@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 
 class AppColors {
   static const Color primary = Color(0xFF70b045);
+  static const Color primarysplash = Color(0xFF42b849);
+
   // static  Color primary = Colors.blue.withOpacity(0.5);
 
   static const Color wight = Color(0xFFffffff);
