@@ -109,21 +109,27 @@ class Profileforuserscreen extends StatelessWidget {
                     },
                     style: Styles.textStyle16,
                     decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide: const BorderSide(
+                      errorBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20)),
+                        borderSide: BorderSide(
                           color: AppColors.red,
                         ),
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide: const BorderSide(
+                      enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20)),
+                        borderSide: BorderSide(
                           color: AppColors.primary,
                         ),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide: const BorderSide(
+                      focusedBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20)),
+                        borderSide: BorderSide(
                           color: AppColors.primary,
                         ),
                       ),
@@ -156,32 +162,39 @@ class Profileforuserscreen extends StatelessWidget {
                       return null;
                     },
                     style: Styles.textStyle16,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide: const BorderSide(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20)),
+                        borderSide: BorderSide(
                           color: AppColors.red,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide: const BorderSide(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20)),
+                        borderSide: BorderSide(
                           color: AppColors.primary,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide: const BorderSide(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20)),
+                        borderSide: BorderSide(
                           color: AppColors.primary,
                         ),
                       ),
                       floatingLabelBehavior: FloatingLabelBehavior.always,
-                      contentPadding:
-                          const EdgeInsets.symmetric(horizontal: 20),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 20),
                       hintText: "Mohamed@gmail.com",
-                      prefixIcon: const Icon(Icons.email),
+                      prefixIcon: Icon(Icons.email),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20)),
                       ),
                     ),
                   ),
@@ -204,32 +217,39 @@ class Profileforuserscreen extends StatelessWidget {
                       return null;
                     },
                     style: Styles.textStyle16,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide: const BorderSide(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20)),
+                        borderSide: BorderSide(
                           color: AppColors.red,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide: const BorderSide(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20)),
+                        borderSide: BorderSide(
                           color: AppColors.primary,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide: const BorderSide(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20)),
+                        borderSide: BorderSide(
                           color: AppColors.primary,
                         ),
                       ),
                       floatingLabelBehavior: FloatingLabelBehavior.always,
-                      contentPadding:
-                          const EdgeInsets.symmetric(horizontal: 20),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 20),
                       hintText: "12345678",
-                      prefixIcon: const Icon(Icons.call),
+                      prefixIcon: Icon(Icons.call),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20)),
                       ),
                     ),
                   ),

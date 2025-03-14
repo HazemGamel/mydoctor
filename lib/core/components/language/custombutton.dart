@@ -9,17 +9,18 @@ class CustomButtonLanguage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 100),
+      padding: const EdgeInsets.symmetric(horizontal: 80),
       child: MaterialButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20), bottomLeft: Radius.circular(20)),
         ),
         onPressed: onpress,
         color: AppColors.primary,
         textColor: AppColors.wight,
         child: Text(
           textlang,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
         ),
       ),
     );

@@ -37,20 +37,23 @@ class CustomTextFormFieldAuth extends StatelessWidget {
         controller: myController,
         style: Styles.textStyle16,
         decoration: InputDecoration(
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20.0),
+          errorBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(20), bottomLeft: Radius.circular(20)),
             borderSide: BorderSide(
               color: AppColors.red,
             ),
           ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20.0),
+          enabledBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(20), bottomLeft: Radius.circular(20)),
             borderSide: BorderSide(
               color: AppColors.primary,
             ),
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20.0),
+          focusedBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(20), bottomLeft: Radius.circular(20)),
             borderSide: BorderSide(
               color: AppColors.primary,
             ),

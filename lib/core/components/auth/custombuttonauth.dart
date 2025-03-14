@@ -14,13 +14,14 @@ class CustomButtonAuth extends StatelessWidget {
       child: MaterialButton(
         padding: const EdgeInsets.all(8),
         color: AppColors.primary,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20), bottomLeft: Radius.circular(20)),
         ),
         onPressed: onpress,
         child: Text(
           textlogin,
-          style: TextStyle(color: Colors.white, fontSize: 20),
+          style: const TextStyle(color: Colors.white, fontSize: 20),
         ),
       ),
     );

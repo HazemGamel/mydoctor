@@ -65,9 +65,18 @@ class Settingforuserscreen extends StatelessWidget {
                   style: Styles.textStyle24.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.primary),
                 ),
-                leading: const Icon(
-                  Icons.person,
-                  size: 30,
+                leading: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.grey.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.person,
+                      size: 30,
+                    ),
+                  ),
                 )),
             ListTile(
                 onTap: () {
@@ -78,14 +87,32 @@ class Settingforuserscreen extends StatelessWidget {
                   style: Styles.textStyle24.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.primary),
                 ),
-                leading: const Icon(
-                  Icons.language,
-                  size: 30,
+                leading: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.grey.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.language,
+                      size: 30,
+                    ),
+                  ),
                 )),
             ListTile(
-              leading: const Icon(
-                Icons.notification_important,
-                size: 30,
+              leading: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.grey.withOpacity(0.4),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.notifications,
+                    size: 30,
+                  ),
+                ),
               ),
               title: Text(
                 "52".tr,
@@ -108,9 +135,18 @@ class Settingforuserscreen extends StatelessWidget {
                   style: Styles.textStyle24.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.primary),
                 ),
-                leading: const Icon(
-                  Icons.info,
-                  size: 30,
+                leading: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.grey.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.info,
+                      size: 30,
+                    ),
+                  ),
                 )),
             ListTile(
                 onTap: () {
@@ -196,9 +232,18 @@ class Settingforuserscreen extends StatelessWidget {
                   style: Styles.textStyle24.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.primary),
                 ),
-                leading: const Icon(
-                  Icons.delete,
-                  size: 30,
+                leading: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.grey.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.delete,
+                      size: 30,
+                    ),
+                  ),
                 )),
             ListTile(
                 onTap: () {
@@ -261,9 +306,18 @@ class Settingforuserscreen extends StatelessWidget {
                   style: Styles.textStyle24.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.primary),
                 ),
-                leading: const Icon(
-                  Icons.logout,
-                  size: 30,
+                leading: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.grey.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.logout,
+                      size: 30,
+                    ),
+                  ),
                 )),
           ],
         ),

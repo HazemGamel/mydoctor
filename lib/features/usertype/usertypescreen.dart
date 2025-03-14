@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mydoctor/core/app_routes/approutes.dart';
+import 'package:mydoctor/core/sevices/sevices.dart';
 import 'package:mydoctor/core/utilies/assets.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
@@ -10,6 +11,8 @@ class Usertypescreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MyServices myServices = Get.find();
+
     return Scaffold(
       body: Column(
         children: [
@@ -37,12 +40,13 @@ class Usertypescreen extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Get.toNamed(AppRouter.kUserregisterscreen);
+                  myServices.sharedPreferences.setString("type", "1");
                 },
                 child: Column(
                   children: [
                     Container(
                       height: 120,
-                      padding: EdgeInsets.all(4),
+                      padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                           border: Border.all(color: AppColors.black)),
                       child: Image.asset(
@@ -66,6 +70,7 @@ class Usertypescreen extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Get.toNamed(AppRouter.kClinicloginscreen);
+                  myServices.sharedPreferences.setString("type", "1");
                 },
                 child: Column(
                   children: [

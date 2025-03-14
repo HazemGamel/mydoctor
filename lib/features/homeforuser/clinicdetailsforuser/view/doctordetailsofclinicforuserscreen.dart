@@ -432,8 +432,10 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                   GestureDetector(
                     onTap: () {},
                     child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)),
                           color: AppColors.primary),
                       child: Center(
                         child: Padding(
@@ -450,8 +452,10 @@ class DoctordetailsofclinicforuserScreen extends StatelessWidget {
                   GestureDetector(
                     onTap: () {},
                     child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)),
                           color: AppColors.red),
                       child: Center(
                         child: Padding(

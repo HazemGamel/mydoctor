@@ -89,11 +89,17 @@ class CustomBookingItem extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Colors.white.withOpacity(0.3), // End color
-
-              AppColors.primary.withOpacity(0.3), // Start color
+              AppColors.primary.withOpacity(0.8),
+              AppColors.primary.withOpacity(0.6),
             ],
           ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -200,9 +206,12 @@ class CustomBookingItem extends StatelessWidget {
                   ),
                   Expanded(
                     child: Container(
-                      decoration: BoxDecoration(
+                      height: 40,
+                      decoration: const BoxDecoration(
                           color: Colors.yellow,
-                          borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20))),
                       child: Center(
                         child: Text(
                           "152".tr,
@@ -230,9 +239,12 @@ class CustomBookingItem extends StatelessWidget {
                   ),
                   Expanded(
                     child: Container(
-                      decoration: BoxDecoration(
+                      height: 40,
+                      decoration: const BoxDecoration(
                           color: Colors.red,
-                          borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20))),
                       child: Center(
                         child: Text(
                           "151".tr,

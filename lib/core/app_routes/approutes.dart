@@ -4,6 +4,7 @@ import 'package:mydoctor/features/auth/forgetpassword/view/checkemail.dart';
 import 'package:mydoctor/features/auth/forgetpassword/view/newpasswordscreen.dart';
 import 'package:mydoctor/features/auth/forgetpassword/view/otpscreen.dart';
 import 'package:mydoctor/features/auth/user/login/view/userloginscreen.dart';
+import 'package:mydoctor/features/auth/user/register/view/registerverifiedotpscreen.dart';
 import 'package:mydoctor/features/auth/user/register/view/userregisterscreen.dart';
 import 'package:mydoctor/features/customerservice/view/customservicescreen.dart';
 import 'package:mydoctor/features/homeforclinic/doctorsforclinics/view/doctorsforclinicsscreen.dart';
@@ -37,7 +38,6 @@ import 'package:mydoctor/features/usertype/usertypescreen.dart';
 
 class AppRouter {
   static const String kSplashScreen = '/';
-  static const String kOnboardingScreen = '/OnboardingScreen';
   static const String kUsertypescreen = '/Usertypescreen';
   static const String kLanguagescreen = '/Languagescreen';
 
@@ -48,6 +48,9 @@ class AppRouter {
   static const String kCheckemailScreen = '/kCheckemailScreen';
   static const String kOtpscreen = '/kOtpscreen';
   static const String kNewpasswordscreen = '/kNewpasswordscreen';
+  static const String kRegisterverifiedotpscreen =
+      '/kRegisterverifiedotpscreen';
+
   //home for user
   static const String kMainHomeforuserscreen = '/kMainHomeforuserscreen';
   static const String kHomeforuserscreen = '/kHomeforuserscreen';
@@ -143,7 +146,12 @@ List<GetPage<dynamic>>? routes = [
     transition: Transition.rightToLeftWithFade, // Set default transition
     transitionDuration: const Duration(milliseconds: 600),
   ),
-
+  GetPage(
+    name: AppRouter.kRegisterverifiedotpscreen,
+    page: () => const Registerverifiedotpscreen(),
+    transition: Transition.rightToLeftWithFade, // Set default transition
+    transitionDuration: const Duration(milliseconds: 600),
+  ),
   // home for user
   GetPage(
     name: AppRouter.kMainHomeforuserscreen,

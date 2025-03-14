@@ -30,8 +30,8 @@ class MyTranslation extends Translations {
           "24": "اخل كلمة السر الجديدة",
           "25": "تم بنجاح",
           "26": "قم بتسجيل الدخول",
-          "27": "الاسم غير صالح",
-          "28": "الايميل غير صالح",
+          "27": "من فضلك ادخل اسمك",
+          "28": "من فضلك ادخل الايميل الخاص بيك",
           "29": "رقم الهاتف غير صالح",
           "30": "كلمة المرور لاتقل عن 6 ارقام",
           "31": "كلمة المرور لاتزيد عن 30 رقم",
@@ -184,7 +184,13 @@ class MyTranslation extends Translations {
           "177": "موافقة",
           "178": "رفض",
           "179": "حذف",
-          "180": "عدد الدكاترة"
+          "180": "عدد الدكاترة",
+          "181": "من فضلك ادخل رقم الهاتف",
+          "182": "من فضلك ادخل كلمة السر",
+          "183": "لقد حدث خطأ ما ,حاول وقت أخر",
+          "184": "الرجاء التحقق من الاتصال بالانترنت",
+          "185": "يجب أن تحتوي كلمة السر علي حروف كبيرة وصغيرة",
+          "186":"تأكد من كود التحقق"
         },
         "en": {
           "1": "Choose Language",
@@ -213,8 +219,8 @@ class MyTranslation extends Translations {
           "24": "enter your new password",
           "25": "Success",
           "26": "Go to login",
-          "27": "username not valid",
-          "28": "your email not valid",
+          "27": "Please enter your name",
+          "28": "Please enter your email",
           "29": "your phone number not valid",
           "30": "your password can`t be less than 6",
           "31": "your password can`t be more than 30",
@@ -371,7 +377,14 @@ class MyTranslation extends Translations {
           "177": "Approve",
           "178": "Reject",
           "179": "Delete",
-          "180": "Number Of Doctors"
+          "180": "Number Of Doctors",
+          "181": "Please enter your phone number",
+          "182": "Please enter your password",
+          "183": "Something went wrong. Try again later.",
+          "184": "Please check your internet connection.",
+          "185":
+              "Password must contain at least one uppercase letter and one lowercase",
+              "186":"Invalid Otp",
         }
       };
 }

@@ -50,6 +50,8 @@ class Homeforuserscreen extends StatelessWidget {
                     ),
                   ),
                   child: SingleChildScrollView(
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -91,15 +93,17 @@ class Homeforuserscreen extends StatelessWidget {
                             cursorColor: AppColors.grey,
                             style: Styles.textStyle16,
                             decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                                borderSide:
-                                    const BorderSide(color: AppColors.wight),
+                              enabledBorder: const OutlineInputBorder(
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(20),
+                                    bottomLeft: Radius.circular(20)),
+                                borderSide: BorderSide(color: AppColors.wight),
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                                borderSide:
-                                    const BorderSide(color: AppColors.wight),
+                              focusedBorder: const OutlineInputBorder(
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(20),
+                                    bottomLeft: Radius.circular(20)),
+                                borderSide: BorderSide(color: AppColors.wight),
                               ),
                               fillColor: AppColors.grey.withOpacity(0.5),
                               filled: true,
@@ -128,40 +132,47 @@ class Homeforuserscreen extends StatelessWidget {
             SliverToBoxAdapter(
               child: CarouselSlider(
                 options: CarouselOptions(
-                  height: 200,
+                  height: screenHeight * 0.32, // 25% of screen height
                   autoPlay: true,
                   enlargeCenterPage: true,
-                  viewportFraction: 0.9,
+                  viewportFraction: 0.85, // Adjust for better responsiveness
+                  autoPlayAnimationDuration: const Duration(milliseconds: 600),
                 ),
                 items: [
                   AppAssets.doctor1,
                   AppAssets.doctor2,
                   AppAssets.clinicimage
                 ].map((imagePath) {
-                  return ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      imagePath,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
+                  return Padding(
+                    padding: const EdgeInsets.all(2), // Responsive padding
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: AppColors.primary, width: 2),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(11),
+                        child: Image.asset(
+                          imagePath,
+                          width: screenWidth * 0.9, // 90% of screen width
+                          height: screenHeight * 0.3,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   );
                 }).toList(),
               ),
             ),
-
             // Clinics Section
             SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.all(10),
               sliver: SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "141".tr,
-                    style: Styles.textStyle24.copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic,
-                    ),
+                child: Text(
+                  "141".tr,
+                  style: Styles.textStyle24.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
                   ),
                 ),
               ),
@@ -170,7 +181,7 @@ class Homeforuserscreen extends StatelessWidget {
             // Horizontal ListView for Clinics
             SliverToBoxAdapter(
               child: SizedBox(
-                height: 120,
+                height: screenHeight * 0.2,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 10,
@@ -182,11 +193,11 @@ class Homeforuserscreen extends StatelessWidget {
                       },
                       child: Container(
                         margin: const EdgeInsets.only(right: 10),
-                        width: 100,
+                        width: screenWidth * 0.28,
                         decoration: BoxDecoration(
                           color: AppColors.wight,
                           borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: AppColors.black),
+                          border: Border.all(color: AppColors.black, width: 2),
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -227,13 +238,13 @@ class Homeforuserscreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SliverToBoxAdapter(
-              child: Expanded(child: SizedBox()),
-            ),
+
             // Horizontal ListView for Nearest Clinics
-            SliverToBoxAdapter(
+            SliverFillRemaining(
+              hasScrollBody: false,
               child: SizedBox(
-                height: 200,
+                height: screenHeight *
+                    0.3, // Takes remaining screen height dynamically
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 10,
@@ -250,90 +261,13 @@ class Homeforuserscreen extends StatelessWidget {
   }
 }
 
-// class CustomItem extends StatelessWidget {
-//   const CustomItem({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Stack(
-//       children: [
-//         SizedBox(
-//           width: double.infinity,
-//           child: Card(
-//             shape: RoundedRectangleBorder(
-//               borderRadius:
-//                   BorderRadius.circular(15), // Match the border radius
-//             ),
-//             color: Colors.grey.shade200,
-//             child: Row(
-//               children: [
-//                 ClipRRect(
-//                   borderRadius: const BorderRadius.only(
-//                     topLeft: Radius.circular(15), // Match the card radius
-//                     bottomLeft: Radius.circular(15),
-//                   ),
-//                   child: Image.asset(
-//                     AppAssets.clinicimage,
-//                     height: 120, // Match the card height
-//                     width: 120,
-//                     fit: BoxFit.fill,
-//                   ),
-//                 ),
-//                 Expanded(
-//                   child: Padding(
-//                     padding: const EdgeInsets.all(8.0),
-//                     child: Column(
-//                       crossAxisAlignment: CrossAxisAlignment.start,
-//                       mainAxisSize: MainAxisSize.min,
-//                       children: [
-//                         Text(
-//                           "El Esra clinc",
-//                           style: Styles.textStyle14
-//                               .copyWith(color: AppColors.black, fontSize: 18),
-//                           maxLines: 1,
-//                           overflow: TextOverflow.ellipsis,
-//                         ),
-//                         Text(
-//                           "dentist",
-//                           style: Styles.textStyle14
-//                               .copyWith(color: AppColors.black, fontSize: 18),
-//                           maxLines: 1,
-//                           overflow: TextOverflow.ellipsis,
-//                         ),
-//                         Text(
-//                           "Jordan Irbid ",
-//                           style: Styles.textStyle14
-//                               .copyWith(color: AppColors.black, fontSize: 18),
-//                           maxLines: 1,
-//                           overflow: TextOverflow.ellipsis,
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//         Positioned(
-//           child: Image.asset(
-//             AppAssets
-//                 .discountyellow, // 🏷 Replace with your discount image asset
-//             height: 50,
-//             width: 50,
-//             fit: BoxFit.cover,
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
 class CustomItemForClinicsInHome extends StatelessWidget {
   const CustomItemForClinicsInHome({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: GestureDetector(
@@ -349,15 +283,16 @@ class CustomItemForClinicsInHome extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: Image.asset(
-                  AppAssets.clinicimage,
-                  height: 200,
-                  width: 180,
-                  fit: BoxFit.cover,
+                child: AspectRatio(
+                  aspectRatio: 15 / 9, // Adjust the aspect ratio as needed
+                  child: Image.asset(
+                    AppAssets.clinicimage,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Container(
-                height: 200,
+                height: screenHeight * 0.3,
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
