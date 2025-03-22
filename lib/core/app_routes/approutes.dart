@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
+import 'package:mydoctor/core/middleware/mymiddleware.dart';
 import 'package:mydoctor/features/auth/clinic/view/clinicloginscreen.dart';
 import 'package:mydoctor/features/auth/forgetpassword/view/checkemail.dart';
 import 'package:mydoctor/features/auth/forgetpassword/view/newpasswordscreen.dart';
 import 'package:mydoctor/features/auth/forgetpassword/view/otpscreen.dart';
 import 'package:mydoctor/features/auth/user/login/view/userloginscreen.dart';
+import 'package:mydoctor/features/auth/user/login/view/userloginverifiedotpscreen.dart';
 import 'package:mydoctor/features/auth/user/register/view/registerverifiedotpscreen.dart';
 import 'package:mydoctor/features/auth/user/register/view/userregisterscreen.dart';
 import 'package:mydoctor/features/customerservice/view/customservicescreen.dart';
@@ -21,11 +23,13 @@ import 'package:mydoctor/features/homeforclinic/view/homeforclinicscreen.dart';
 import 'package:mydoctor/features/homeforclinic/view/mainhomeforclinicscreen.dart';
 import 'package:mydoctor/features/homeforclinic/view/notificationforclinicscreen.dart';
 import 'package:mydoctor/features/homeforclinic/view/settingforclinicscreen.dart';
+import 'package:mydoctor/features/homeforuser/aboutus/view/aboutusforuserscreen.dart';
 import 'package:mydoctor/features/homeforuser/changelanguage/view/changelanguageforuserscreen.dart';
 import 'package:mydoctor/features/homeforuser/clinicdetailsforuser/view/clinicdetailsforuserscreen.dart';
 import 'package:mydoctor/features/homeforuser/clinicdetailsforuser/view/doctordetailsofclinicforuserscreen.dart';
 import 'package:mydoctor/features/homeforuser/clinicsforuser/view/clinicsforuserscreen.dart';
 import 'package:mydoctor/features/homeforuser/profile/view/profileforuserscreen.dart';
+import 'package:mydoctor/features/homeforuser/search/view/searchscreen.dart';
 import 'package:mydoctor/features/homeforuser/view/homeforuserscreen.dart';
 import 'package:mydoctor/features/homeforuser/view/mainhomeforuserscreen.dart';
 import 'package:mydoctor/features/homeforuser/view/mybookingforuserscreen.dart';
@@ -50,6 +54,9 @@ class AppRouter {
   static const String kNewpasswordscreen = '/kNewpasswordscreen';
   static const String kRegisterverifiedotpscreen =
       '/kRegisterverifiedotpscreen';
+
+  static const String kUserloginverifiedotpscreen =
+      '/kUserloginverifiedotpscreen';
 
   //home for user
   static const String kMainHomeforuserscreen = '/kMainHomeforuserscreen';
@@ -99,11 +106,20 @@ class AppRouter {
 
   //customer service
   static const String kCustomservicescreen = '/kCustomservicescreen';
+  //search
+  static const String kSearchscreen = '/kSearchscreen';
+  //aboutus for user
+  static const String kAboutusforuserscreen = '/kAboutusforuserscreen';
 }
 
 List<GetPage<dynamic>>? routes = [
   GetPage(name: "/", page: () => const SplashScreen()),
-  GetPage(name: AppRouter.kLanguagescreen, page: () => const Languagescreen()),
+  GetPage(
+      name: AppRouter.kLanguagescreen,
+      page: () => const Languagescreen(),
+      middlewares: [
+        MyMiddleWare(),
+      ]),
   GetPage(
       name: AppRouter.kUsertypescreen,
       page: () => const Usertypescreen(),
@@ -149,6 +165,12 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRouter.kRegisterverifiedotpscreen,
     page: () => const Registerverifiedotpscreen(),
+    transition: Transition.rightToLeftWithFade, // Set default transition
+    transitionDuration: const Duration(milliseconds: 600),
+  ),
+  GetPage(
+    name: AppRouter.kUserloginverifiedotpscreen,
+    page: () => const Userloginverifiedotpscreen(),
     transition: Transition.rightToLeftWithFade, // Set default transition
     transitionDuration: const Duration(milliseconds: 600),
   ),
@@ -294,6 +316,19 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRouter.kCustomservicescreen,
     page: () => const Customservicescreen(),
+    transition: Transition.rightToLeftWithFade, // Set default transition
+    transitionDuration: const Duration(milliseconds: 600),
+  ),
+
+  GetPage(
+    name: AppRouter.kSearchscreen,
+    page: () => const Searchscreen(),
+    transition: Transition.rightToLeftWithFade, // Set default transition
+    transitionDuration: const Duration(milliseconds: 600),
+  ),
+  GetPage(
+    name: AppRouter.kAboutusforuserscreen,
+    page: () => const Aboutusforuserscreen(),
     transition: Transition.rightToLeftWithFade, // Set default transition
     transitionDuration: const Duration(milliseconds: 600),
   ),

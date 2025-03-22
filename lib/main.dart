@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mydoctor/biniding.dart';
 import 'package:mydoctor/core/app_routes/approutes.dart';
+import 'package:mydoctor/core/helper/notificationshelper.dart';
 import 'package:mydoctor/core/localizations/changelocal.dart';
 import 'package:mydoctor/core/localizations/mytranslation.dart';
 import 'package:mydoctor/core/sevices/sevices.dart';
@@ -22,8 +23,9 @@ class MyHttpOverrides extends HttpOverrides {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  HttpOverrides.global = MyHttpOverrides();
+  //HttpOverrides.global = MyHttpOverrides();
   await initialzition();
+
   runApp(const MyApp());
 }
 

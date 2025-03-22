@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tawkto/flutter_tawk.dart';
+import 'package:mydoctor/core/components/customanimationloading.dart';
 
 class Customservicescreen extends StatelessWidget {
   const Customservicescreen({super.key});
@@ -20,8 +21,8 @@ class Customservicescreen extends StatelessWidget {
         onLinkTap: (String url) {
           // print(url);
         },
-        placeholder: const Center(
-          child: Text('Loading...'),
+        placeholder: Center(
+          child: customAnimationLoading(),
         ),
       ),
     );

@@ -20,4 +20,5 @@ class AppAssets {
   static const String doctor1 = "assets/images/doctor1.jpg";
   static const String doctor2 = "assets/images/doctor2.jpg";
   static const String dentistimage = "assets/images/dentist.png";
+  static const String animationLoading = "assets/images/loading.gif";
 }

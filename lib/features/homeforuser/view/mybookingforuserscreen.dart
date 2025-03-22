@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mydoctor/core/components/customanimationloading.dart';
+import 'package:mydoctor/core/components/customloading.dart';
+import 'package:mydoctor/core/functions/translatdatabase.dart';
 import 'package:mydoctor/core/utilies/assets.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
+import 'package:mydoctor/core/utilies/enum.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
+import 'package:mydoctor/features/homeforuser/controller/mybookingforusercontroller.dart';
+import 'package:mydoctor/models/usermodels/clinics/getreservationsmodel.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Mybookingforuserscreen extends StatelessWidget {
   const Mybookingforuserscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => Mybookingforusercontroller());
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
@@ -52,24 +60,37 @@ class Mybookingforuserscreen extends StatelessWidget {
           ),
         ),
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return const CustomBookingItem();
-              },
-              childCount: 3, // Number of items in the list
-            ),
-          ),
-        ],
-      ),
+      body: GetBuilder<Mybookingforusercontroller>(builder: (controller) {
+        if (controller.statusRequest == StatusRequest.loading) {
+          return customAnimationLoading();
+        }
+        return CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: ListView.builder(
+                    //shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: controller.scrollController,
+                    itemCount: controller.reservations.length,
+                    itemBuilder: (context, index) {
+                      return CustomBookingItem(
+                        model: controller.reservations[index],
+                      );
+                    }),
+              ),
+            )
+          ],
+        );
+      }),
     );
   }
 }
 
-class CustomBookingItem extends StatelessWidget {
-  const CustomBookingItem({super.key});
+class CustomBookingItem extends GetView<Mybookingforusercontroller> {
+  final GetReservationsModel model;
+  const CustomBookingItem({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +138,7 @@ class CustomBookingItem extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      " : El Esra ",
+                      " : ${translateDatabase(model.clinic.nameAr, model.clinic.nameEn)}",
                       style: Styles.textStyle24.copyWith(
                           fontWeight: FontWeight.bold, color: AppColors.wight),
                     ),
@@ -136,7 +157,7 @@ class CustomBookingItem extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      " : Ahmed Mohamed ",
+                      " : ${translateDatabase(model.doctor.nameAr, model.doctor.nameEn)}",
                       style: Styles.textStyle24.copyWith(
                           fontWeight: FontWeight.bold, color: AppColors.wight),
                     ),
@@ -155,7 +176,7 @@ class CustomBookingItem extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      " : Jordan Irbid  ",
+                      " : ${translateDatabase(model.clinic.addressAr, model.clinic.addressEn)} ",
                       style: Styles.textStyle24.copyWith(
                           fontWeight: FontWeight.bold, color: AppColors.wight),
                     ),
@@ -177,13 +198,16 @@ class CustomBookingItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          " : 123456789 ",
+                          " : ${model.clinic.phone} ",
                           style: Styles.textStyle24.copyWith(
                               fontWeight: FontWeight.bold,
                               color: AppColors.wight),
                         ),
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              await launchUrl(
+                                  Uri.parse("tel:${model.clinic.phone}"));
+                            },
                             icon: const Icon(
                               Icons.phone,
                               size: 30,
@@ -212,14 +236,23 @@ class CustomBookingItem extends StatelessWidget {
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(20),
                               bottomLeft: Radius.circular(20))),
-                      child: Center(
-                        child: Text(
-                          "152".tr,
-                          style: Styles.textStyle24.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.black),
-                        ),
-                      ),
+                      child: model.status == "pending"
+                          ? Center(
+                              child: Text(
+                                "152".tr,
+                                style: Styles.textStyle24.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.black),
+                              ),
+                            )
+                          : Center(
+                              child: Text(
+                                "152".tr,
+                                style: Styles.textStyle24.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.black),
+                              ),
+                            ),
                     ),
                   ),
                 ],
@@ -227,36 +260,44 @@ class CustomBookingItem extends StatelessWidget {
               const SizedBox(
                 height: 4,
               ),
-              Row(
-                children: [
-                  Text(
-                    "150".tr,
-                    style: Styles.textStyle24.copyWith(
-                        fontWeight: FontWeight.bold, color: AppColors.black),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 40,
-                      decoration: const BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              bottomLeft: Radius.circular(20))),
-                      child: Center(
-                        child: Text(
-                          "151".tr,
+              model.status == "pending"
+                  ? Row(
+                      children: [
+                        Text(
+                          "150".tr,
                           style: Styles.textStyle24.copyWith(
                               fontWeight: FontWeight.bold,
                               color: AppColors.black),
                         ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              controller.cancelReservation(model.id);
+                            },
+                            child: Container(
+                              height: 40,
+                              decoration: const BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(20),
+                                      bottomLeft: Radius.circular(20))),
+                              child: Center(
+                                child: Text(
+                                  "151".tr,
+                                  style: Styles.textStyle24.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.black),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  : const SizedBox(),
             ],
           ),
         ),

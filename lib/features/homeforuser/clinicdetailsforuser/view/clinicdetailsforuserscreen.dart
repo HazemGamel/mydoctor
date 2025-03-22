@@ -1,15 +1,27 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mydoctor/core/app_routes/approutes.dart';
+import 'package:mydoctor/core/components/customanimationloading.dart';
+import 'package:mydoctor/core/components/customloading.dart';
+import 'package:mydoctor/core/functions/translatdatabase.dart';
+import 'package:mydoctor/core/sevices/sevices.dart';
 import 'package:mydoctor/core/utilies/assets.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
+import 'package:mydoctor/core/utilies/enum.dart';
+import 'package:mydoctor/core/utilies/linkapi.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
+import 'package:mydoctor/features/homeforuser/clinicdetailsforuser/controller/clinicdetailsforusercontroller.dart';
+import 'package:mydoctor/models/usermodels/clinics/getdoctorsinclinicmodel.dart';
 
 class Clinicdetailsforuserscreen extends StatelessWidget {
   const Clinicdetailsforuserscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.put(Clinicdetailsforusercontroller());
+    print("////////////////");
+    print(Get.arguments["id"]);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
@@ -59,165 +71,114 @@ class Clinicdetailsforuserscreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "160".tr,
-                    style: Styles.textStyle24
-                        .copyWith(fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    return const CustomItemForDoctorsInClinc();
-                  },
-                  childCount: 4, // Number of items in the list
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: Text(
-                  "148".tr,
-                  style:
-                      Styles.textStyle24.copyWith(fontWeight: FontWeight.bold),
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey.shade200),
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.location_on,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                "161".tr,
-                                style: Styles.textStyle20
+      body: GetBuilder<Clinicdetailsforusercontroller>(builder: (controller) {
+        return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: controller.statusRequest == StatusRequest.loading
+                ? customAnimationLoading()
+                : controller.doctors.isEmpty
+                    ? Center(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Text(
+                            "191".tr,
+                            style: Styles.textStyle20
+                                .copyWith(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      )
+                    : CustomScrollView(
+                        slivers: [
+                          SliverToBoxAdapter(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "160".tr,
+                                style: Styles.textStyle24
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),
-                            ],
+                            ),
                           ),
-                          Text(
-                            "145".tr,
-                            style: Styles.textStyle16.copyWith(
-                                fontWeight: FontWeight.normal,
-                                color: AppColors.grey),
-                            maxLines: 2,
-                          )
+                          SliverList(
+                            delegate: SliverChildBuilderDelegate(
+                              (context, index) {
+                                return CustomItemForDoctorsInClinc(
+                                  model: controller.doctors[index],
+                                );
+                              },
+                              childCount: controller.doctors
+                                  .length, // Number of items in the list
+                            ),
+                          ),
+                          // SliverToBoxAdapter(
+                          //   child: Text(
+                          //     "148".tr,
+                          //     style: Styles.textStyle24
+                          //         .copyWith(fontWeight: FontWeight.bold),
+                          //   ),
+                          // ),
+                          // SliverToBoxAdapter(
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.all(2.0),
+                          //     child: Container(
+                          //       width: double.infinity,
+                          //       decoration: BoxDecoration(
+                          //           borderRadius: BorderRadius.circular(10),
+                          //           color: Colors.grey.shade200),
+                          //       child: Padding(
+                          //         padding: const EdgeInsets.all(4.0),
+                          //         child: Column(
+                          //           crossAxisAlignment: CrossAxisAlignment.start,
+                          //           mainAxisSize: MainAxisSize.min,
+                          //           children: [
+                          //             Row(
+                          //               children: [
+                          //                 const Icon(
+                          //                   Icons.location_on,
+                          //                 ),
+                          //                 const SizedBox(
+                          //                   width: 5,
+                          //                 ),
+                          //                 Text(
+                          //                   "161".tr,
+                          //                   style: Styles.textStyle20
+                          //                       .copyWith(fontWeight: FontWeight.bold),
+                          //                 ),
+                          //               ],
+                          //             ),
+                          //             Text(
+                          //               "${translateDatabase(, model.nameEn)}",
+                          //               style: Styles.textStyle16.copyWith(
+                          //                   fontWeight: FontWeight.normal,
+                          //                   color: AppColors.grey),
+                          //               maxLines: 2,
+                          //             )
+                          //           ],
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          )),
+                      ));
+      }),
     );
   }
 }
 
-// class CustomItemForDoctorsInClinc extends StatelessWidget {
-//   const CustomItemForDoctorsInClinc({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Stack(
-//       children: [
-//         GestureDetector(
-//           onTap: () {
-//             Get.toNamed(AppRouter.kDoctordetailsofclinicforuserScreen);
-//           },
-//           child: Padding(
-//             padding: const EdgeInsets.all(4.0),
-//             child: Container(
-//               width: double.infinity,
-//               child: Row(
-//                 children: [
-//                   ClipRRect(
-//                     borderRadius: const BorderRadius.only(
-//                       topLeft: Radius.circular(15), // Match the card radius
-//                       bottomLeft: Radius.circular(15),
-//                     ),
-//                     child: Image.asset(
-//                       AppAssets.clinicimage,
-//                       height: 120, // Match the card height
-//                       width: 120,
-//                       fit: BoxFit.fill,
-//                     ),
-//                   ),
-//                   Expanded(
-//                     child: Padding(
-//                       padding: const EdgeInsets.only(
-//                           bottom: 20.0, left: 8, right: 8),
-//                       child: Column(
-//                         crossAxisAlignment: CrossAxisAlignment.start,
-//                         mainAxisSize: MainAxisSize.min,
-//                         children: [
-//                           Text(
-//                             "d.Ahmed Mohamed",
-//                             style: Styles.textStyle14.copyWith(
-//                                 color: AppColors.black,
-//                                 fontSize: 18,
-//                                 fontWeight: FontWeight.bold),
-//                             maxLines: 1,
-//                             overflow: TextOverflow.ellipsis,
-//                           ),
-//                           Text(
-//                             "Senior Consultant in Dentistry",
-//                             style: Styles.textStyle14
-//                                 .copyWith(color: AppColors.grey, fontSize: 14),
-//                             maxLines: 1,
-//                             overflow: TextOverflow.ellipsis,
-//                           ),
-//                           Text(
-//                             "Jordan Irbid ",
-//                             style: Styles.textStyle14
-//                                 .copyWith(color: AppColors.grey, fontSize: 14),
-//                             maxLines: 1,
-//                             overflow: TextOverflow.ellipsis,
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
 class CustomItemForDoctorsInClinc extends StatelessWidget {
-  const CustomItemForDoctorsInClinc({super.key});
+  final DoctorsInClinicModel model;
+  const CustomItemForDoctorsInClinc({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
+    MyServices myServices = Get.find();
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRouter.kDoctordetailsofclinicforuserScreen);
+        Get.toNamed(AppRouter.kDoctordetailsofclinicforuserScreen, arguments: {
+          "idforclinic": Get.arguments["id"],
+          "idfordoctor": model.id
+        });
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -228,11 +189,21 @@ class CustomItemForDoctorsInClinc extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
-              child: Image.asset(
-                AppAssets.clinicimage,
+              child: CachedNetworkImage(
+                imageUrl: "${AppLinkAPi.images}/${model.image}",
                 height: 200,
                 width: double.infinity,
-                fit: BoxFit.cover,
+                fit: BoxFit.cover, // Network image URL
+                placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.primary,
+                  ),
+                ), // Loading indicator
+                errorWidget: (context, url, error) => const Icon(
+                  Icons.broken_image,
+                  size: 50,
+                  color: Colors.red,
+                ), // Error widget
               ),
             ),
             Container(
@@ -247,13 +218,16 @@ class CustomItemForDoctorsInClinc extends StatelessWidget {
                 ),
               ),
               child: Align(
-                alignment: Alignment.bottomLeft,
+                alignment:
+                    myServices.sharedPreferences.getString("lang") == "ar"
+                        ? Alignment.bottomRight
+                        : Alignment.bottomLeft,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "162".tr,
+                      "${translateDatabase(model.nameAr, model.nameEn)}",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
@@ -262,7 +236,7 @@ class CustomItemForDoctorsInClinc extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      "163".tr,
+                      "${translateDatabase(model.descriptionAr, model.descriptionEn)}",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style:

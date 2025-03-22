@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mydoctor/core/app_routes/approutes.dart';
 import 'package:mydoctor/core/components/language/custombutton.dart';
+import 'package:mydoctor/core/localizations/changelocal.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
 
-class Changelanguageforuserscreen extends StatelessWidget {
+class Changelanguageforuserscreen extends GetView<LocalController> {
   const Changelanguageforuserscreen({super.key});
 
   @override
@@ -74,7 +76,10 @@ class Changelanguageforuserscreen extends StatelessWidget {
           ),
           CustomButtonLanguage(
             textlang: "عربي",
-            onpress: () {},
+            onpress: () {
+              controller.changeLang("ar");
+              //Get.offAllNamed(AppRouter.kMainHomeforuserscreen);
+            },
           ),
           const SizedBox(
             height: 10,
@@ -82,7 +87,7 @@ class Changelanguageforuserscreen extends StatelessWidget {
           CustomButtonLanguage(
             textlang: "English",
             onpress: () {
-              // controller.changeLang("en");
+              controller.changeLang("en");
             },
           ),
         ],

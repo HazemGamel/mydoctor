@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
+import 'package:mydoctor/core/helper/notificationshelper.dart';
 import 'package:mydoctor/core/sevices/locationservice.dart';
 import 'package:mydoctor/firebase_options.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,9 +14,9 @@ class MyServices extends GetxService {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+    FirebaseNotificationsHelper.initialize();
     //location
     await LocationService().getLocation();
-
     //end
     return this;
   }

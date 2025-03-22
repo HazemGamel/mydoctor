@@ -1,52 +1,59 @@
 class AppLinkAPi {
-  static const String server = "https://www.mydoctor-app.com/app";
-  static const String imageStatic = "https://foodapp.almubarmig.com/uplaod";
-  static const String categoriesImages = "$imageStatic/categories";
-  static const String itemsImages = "$imageStatic/items";
+  static const String server = "https://api.mydoctor-app.com/app";
+  static const String images = "https://api.mydoctor-app.com/images";
+
   static const String registerforuser = "$server/auth/signup";
   static const String registerverifiedotpforuser = "$server/auth/verify";
 
   static const String loginforuser = "$server/auth/login";
+  static const String loginverifiedotpforuser = "$server/auth/verify";
+  static const String logoutApi = "$server/auth/logout-all";
 
+//forget password
+  static const String checkEmailForForgetPassword =
+      "$server/auth/forgot-password";
+  static const String otpForForgetPassword =
+      "$server/auth/forgot-password/verify";
+  static const String newPassword = "$server/auth/set-password";
   //home
-  static const String home = "$server/home.php";
-  //items
-  static const String items = "$server/items/items.php";
-  static const String searchitems = "$server/items/search.php";
-  //favorites
-  static const String addToFavorite = "$server/favorite/add.php";
-  static const String removeFromFavorite = "$server/favorite/remove.php";
-  static const String myFavorite = "$server/favorite/view.php";
-  static const String deleteFromFavorites =
-      "$server/favorite/deletefromfavorite.php";
-  //cart
-  // add = +
-  static const String addToCart = "$server/cart/add.php";
-  // delet = -
-  static const String deleteFromCart = "$server/cart/delete.php";
-  static const String getCountCart = "$server/cart/getcountitems.php";
-  static const String cartView = "$server/cart/cartview.php";
-  //address
-  static const String addAddress = "$server/address/add.php";
-  static const String viewAddress = "$server/address/view.php";
-  static const String editAddress = "$server/address/edit.php";
-  static const String deleteAddress = "$server/address/delete.php";
-  //coupon
-  static const String checkcoupon = "$server/coupon/checkcoupon.php";
-  //orders
-  static const String checkout = "$server/order/checkorder.php";
-  //orders
-  static const String pendingOrder = "$server/order/pending.php";
-  static const String ordersdetails = "$server/order/details.php";
-  static const String deleteorders = "$server/order/delete.php";
-  static const String ordersArchive = "$server/order/archive.php";
-  //notification
-  static const String notification = "$server/notification.php";
-  //rating
-  static const String rating = "$server/rating.php";
-  //deleteaccount
-  static const String deleteAccount = "$server/deleteaccount.php";
-  //forgetpassword
-  static const String checkemail = "$server/forgetpassword/checkemail.php";
-  static const String restpassword = "$server/forgetpassword/resetpassword.php";
+  static const String getBannersApi = "$server/banners";
+  static String getspecializationsApi(pageNumber) =>
+      "$server/specializations?page=$pageNumber";
+
+  static String getTop10NearestClinicApi(lat, long) =>
+      "$server/clinics/best-10?longitude=$long&latitude=$lat";
+
+  //get clinics base on specializ
+
+  static String getClinicsBasedOnSpecializationApi(id, lat, long, pageNumber) =>
+      "$server/clinics/specializations/$id?longitude=$long&latitude=$lat&page=$pageNumber";
+
+//get doctors in clinic
+  static String getDoctorsinClinic(id) => "$server/doctors/clinic/$id";
+
+  //get doctor details
+  static String getDoctorinClinic(idDoctor, idClinic) =>
+      "$server/doctors/$idDoctor/clinic/$idClinic";
+
+  //user profile
+  static const String updateUserProfileApi = "$server/patient/";
+  static const String updateUserProfilePictureApi =
+      "$server/patient/profile-picture";
+
+  //booking
+  static const String makeReservationsApi = "$server/reservations";
+  static String getReservationsApi(pageNumber) =>
+      "$server/reservations?page=$pageNumber";
+  static String cancelReservationsApi(id) => "$server/reservations/$id";
+
+  //delete my account
+  static const String deleteMyaccountApi = "$server/patient/";
+
+  //search
+  static String searchApi(value, lat, long) =>
+      "$server/clinics/search?search=$value&longitude=$long&latitude=$lat";
+
+  //about us for user
+
+  static const String aboutusForUserApi = "$server/settings/name/about_us";
 }

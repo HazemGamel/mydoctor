@@ -6,3 +6,9 @@ headersWithToken(String token) => {
 authHeader() => {
       'Content-Type': 'application/json',
     };
+
+headersWithTokenforimage(String token) => {
+      'Authorization': 'Bearer $token',
+      "Content-Type":
+          'multipart/form-data; boundary=<calculated when request is sent>',
+    };

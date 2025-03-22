@@ -24,6 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primary,
       body: Center(
         child: SizedBox(
           width: double.infinity,
@@ -31,7 +32,6 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Image.asset(
             AppAssets.splashlogo,
             fit: BoxFit.cover,
-            gaplessPlayback: true,
           ),
         ),
       ),

@@ -14,3 +14,16 @@ CustomShowDialog(middletext) {
       title: "33".tr,
       middleText: middletext);
 }
+
+
+CustomSuccessShowDialog(middletext) {
+  Get.defaultDialog(
+      backgroundColor: AppColors.primary,
+      titleStyle: Styles.textStyle24
+          .copyWith(color: AppColors.wight, fontWeight: FontWeight.bold),
+      middleTextStyle: Styles.textStyle20.copyWith(
+        color: AppColors.wight,
+      ),
+      title: "194".tr,
+      middleText: middletext);
+}
