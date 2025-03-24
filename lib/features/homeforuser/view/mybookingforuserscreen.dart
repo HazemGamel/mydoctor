@@ -64,25 +64,16 @@ class Mybookingforuserscreen extends StatelessWidget {
         if (controller.statusRequest == StatusRequest.loading) {
           return customAnimationLoading();
         }
-        return CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: ListView.builder(
-                    //shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    controller: controller.scrollController,
-                    itemCount: controller.reservations.length,
-                    itemBuilder: (context, index) {
-                      return CustomBookingItem(
-                        model: controller.reservations[index],
-                      );
-                    }),
-              ),
-            )
-          ],
-        );
+        return ListView.builder(
+            //shrinkWrap: true,
+            //physics: const NeverScrollableScrollPhysics(),
+            controller: controller.scrollController,
+            itemCount: controller.reservations.length,
+            itemBuilder: (context, index) {
+              return CustomBookingItem(
+                model: controller.reservations[index],
+              );
+            });
       }),
     );
   }
@@ -230,30 +221,42 @@ class CustomBookingItem extends GetView<Mybookingforusercontroller> {
                   ),
                   Expanded(
                     child: Container(
-                      height: 40,
-                      decoration: const BoxDecoration(
-                          color: Colors.yellow,
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              bottomLeft: Radius.circular(20))),
-                      child: model.status == "pending"
-                          ? Center(
-                              child: Text(
-                                "152".tr,
-                                style: Styles.textStyle24.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.black),
-                              ),
-                            )
-                          : Center(
-                              child: Text(
-                                "152".tr,
-                                style: Styles.textStyle24.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.black),
-                              ),
-                            ),
-                    ),
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: model.status == "pending"
+                                ? Colors.yellow
+                                : model.status == "accepted"
+                                    ? AppColors.primary
+                                    : AppColors.red,
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                bottomLeft: Radius.circular(20))),
+                        child: model.status == "pending"
+                            ? Center(
+                                child: Text(
+                                  "152".tr,
+                                  style: Styles.textStyle24.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.black),
+                                ),
+                              )
+                            : model.status == "accepted"
+                                ? Center(
+                                    child: Text(
+                                      "209".tr,
+                                      style: Styles.textStyle24.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.black),
+                                    ),
+                                  )
+                                : Center(
+                                    child: Text(
+                                      "210".tr,
+                                      style: Styles.textStyle24.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.black),
+                                    ),
+                                  )),
                   ),
                 ],
               ),

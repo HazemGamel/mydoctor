@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mydoctor/core/components/customanimationloading.dart';
+import 'package:mydoctor/core/functions/translatdatabase.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
+import 'package:mydoctor/core/utilies/enum.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
+import 'package:mydoctor/features/homeforclinic/ordersforalldoctorsinclinic/controller/acceptedordersforalldoctorcontroller.dart';
+import 'package:mydoctor/features/homeforclinic/ordersforalldoctorsinclinic/controller/waitingordersforalldoctorscontroller.dart';
+import 'package:mydoctor/models/clinicmodels/ordersforalldoctors/ordersforalldoctorsmodel.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Waitingordersforalldoctorsscree extends StatelessWidget {
   const Waitingordersforalldoctorsscree({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Get.lazyPut(() =>
+    //     Ordersforalldoctorscontroller()..getreservations(status: "pending"));
+    Get.lazyPut(() => Waitingordersforalldoctorscontroller());
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
@@ -54,24 +65,51 @@ class Waitingordersforalldoctorsscree extends StatelessWidget {
           ),
         ),
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return const CustomItemForWaitingOrders();
-              },
-              childCount: 3, // Number of items in the list
-            ),
-          ),
-        ],
-      ),
+      body: GetBuilder<Waitingordersforalldoctorscontroller>(
+          builder: (controller) {
+        if (controller.statusRequest == StatusRequest.loading) {
+          return customAnimationLoading();
+        }
+        if (controller.reservations.isEmpty) {
+          return Center(
+              child: Text(
+            "206".tr,
+            style: Styles.textStyle20,
+          ));
+        }
+        return ListView.builder(
+            itemCount: controller.reservations.length,
+            controller: controller.scrollController,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Column(
+                  children: [
+                    CustomItemForWaitingOrders(
+                      model: controller.reservations[index],
+                    ),
+                    Divider(
+                      color: Colors.grey.shade300,
+                      thickness: 1,
+                      indent: 20,
+                      endIndent: 20,
+                    ),
+                  ],
+                ),
+              );
+            });
+      }),
     );
   }
 }
 
-class CustomItemForWaitingOrders extends StatelessWidget {
-  const CustomItemForWaitingOrders({super.key});
+class CustomItemForWaitingOrders
+    extends GetView<Waitingordersforalldoctorscontroller> {
+  final OrdersForAllDoctorsModel model;
+  const CustomItemForWaitingOrders({
+    super.key,
+    required this.model,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -101,32 +139,32 @@ class CustomItemForWaitingOrders extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                const Icon(
-                  Icons.list_alt,
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  "98".tr,
-                  style: Styles.textStyle24.copyWith(
-                      fontWeight: FontWeight.bold, color: AppColors.black),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Expanded(
-                  child: Text(
-                    " : 1 ",
-                    style: Styles.textStyle24.copyWith(
-                        fontWeight: FontWeight.normal, color: AppColors.black),
-                  ),
-                ),
-              ],
-            ),
-            const Divider(),
+            // Row(
+            //   children: [
+            //     const Icon(
+            //       Icons.list_alt,
+            //     ),
+            //     const SizedBox(
+            //       width: 5,
+            //     ),
+            //     Text(
+            //       "98".tr,
+            //       style: Styles.textStyle24.copyWith(
+            //           fontWeight: FontWeight.bold, color: AppColors.black),
+            //     ),
+            //     const SizedBox(
+            //       width: 5,
+            //     ),
+            //     Expanded(
+            //       child: Text(
+            //         " : 1 ",
+            //         style: Styles.textStyle24.copyWith(
+            //             fontWeight: FontWeight.normal, color: AppColors.black),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            //const Divider(),
             Row(
               children: [
                 const Icon(
@@ -145,7 +183,7 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    " : Ahmed Mohamed ",
+                    " : ${model.patient.name}",
                     style: Styles.textStyle24.copyWith(
                         fontWeight: FontWeight.normal, color: AppColors.black),
                   ),
@@ -171,7 +209,7 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    " : Mohamed abaas ",
+                    " : ${translateDatabase(model.doctor.nameAr, model.doctor.nameEn)} ",
                     style: Styles.textStyle24.copyWith(
                         fontWeight: FontWeight.normal, color: AppColors.black),
                   ),
@@ -197,7 +235,7 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    " : El esra ",
+                    " : ${translateDatabase(model.clinic.nameAr, model.clinic.nameEn)} ",
                     style: Styles.textStyle24.copyWith(
                         fontWeight: FontWeight.normal, color: AppColors.black),
                   ),
@@ -215,7 +253,7 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                 ),
                 Text(
                   "14".tr,
-                  style: Styles.textStyle24.copyWith(
+                  style: Styles.textStyle18.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.black),
                 ),
                 const SizedBox(
@@ -226,13 +264,16 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        " : 123456789 ",
-                        style: Styles.textStyle24.copyWith(
+                        " : ${model.patient.phone} ",
+                        style: Styles.textStyle18.copyWith(
                             fontWeight: FontWeight.normal,
                             color: AppColors.black),
                       ),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            await launchUrl(
+                                Uri.parse("tel:${model.patient.phone}"));
+                          },
                           icon: const Icon(
                             Icons.phone,
                             size: 30,
@@ -247,7 +288,9 @@ class CustomItemForWaitingOrders extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    controller.accepteOrder(model.id);
+                  },
                   child: Container(
                     height: 40,
                     width: 100,
@@ -264,7 +307,9 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    controller.rejectOrder(model.id);
+                  },
                   child: Container(
                     height: 40,
                     width: 100,

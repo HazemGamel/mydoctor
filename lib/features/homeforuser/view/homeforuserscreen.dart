@@ -410,13 +410,13 @@ class CustomItemForClinicsInHome extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
-                child: Image.asset(
-                  AppAssets.discountyellow,
-                  height: 50,
-                  width: 50,
-                ),
-              )
+              // Positioned(
+              //   child: Image.asset(
+              //     AppAssets.discountyellow,
+              //     height: 50,
+              //     width: 50,
+              //   ),
+              // )
             ],
           ),
         ),

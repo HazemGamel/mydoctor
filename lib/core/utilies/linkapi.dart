@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 class AppLinkAPi {
   static const String server = "https://api.mydoctor-app.com/app";
   static const String images = "https://api.mydoctor-app.com/images";
@@ -56,4 +58,41 @@ class AppLinkAPi {
   //about us for user
 
   static const String aboutusForUserApi = "$server/settings/name/about_us";
+
+  //clinics api
+  static const String serverclinic = "https://api.mydoctor-app.com";
+  static const String cliniclogin = "$serverclinic/clinic/auth/login";
+  static const String getdoctorsinclinicApi = "$serverclinic/clinic/doctors";
+  static const String aboutusforclinicApi =
+      "$serverclinic/clinic/settings/name/about_us";
+
+  static const String cliniclogoutApi = "$serverclinic/clinic/auth/logout-all";
+
+  //orders for all doctors
+  static String ordersforalldoctorsApi(pageNumber, status) =>
+      "$serverclinic/clinic/reservations?status=$status&page=$pageNumber";
+
+  static String acceptedorderApi(id) =>
+      "$serverclinic/clinic/reservations/$id/accept";
+
+  static String rejectorderApi(id) =>
+      "$serverclinic/clinic/reservations/$id/reject";
+
+  static String ordersforOnedoctorsApi(id, pageNumber, status) =>
+      "$serverclinic/clinic/reservations/doctor/$id?status=$status&page=$pageNumber";
+
+  static const String clinicnotifcationsApi =
+      "$serverclinic/clinic/notifications";
+  static const String readclinicnotifcationsApi =
+      "$serverclinic/clinic/notifications/read_all";
+
+  static String deleteclinicnotifcationsApi(id) =>
+      "$serverclinic/clinic/notifications/$id";
+
+  //notifications for user
+
+  static const String getNotificationsApi = "$server/notifications";
+  static String deleteNotificationsApi(id) => "$server/notifications/$id";
+  static const String readallNotificationsApi =
+      "$server/notifications/read_all";
 }

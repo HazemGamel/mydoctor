@@ -30,7 +30,7 @@ class Mybookingforusercontroller extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    getreservations(nextPage);
+    await getreservations(nextPage);
     scrollController.addListener(_scrollListener);
   }
 
@@ -38,7 +38,7 @@ class Mybookingforusercontroller extends GetxController {
     var currentPosition = scrollController.position.pixels;
     var maxScrollLenght = scrollController.position.maxScrollExtent;
 
-    if (currentPosition >= 0.7 * maxScrollLenght) {
+    if (currentPosition == maxScrollLenght) {
       if (!isLoading) {
         isLoading = true;
         await getreservations(nextPage++);
@@ -50,7 +50,7 @@ class Mybookingforusercontroller extends GetxController {
 //getreservations
 
   getreservations(nextpage) async {
-    if (nextpage == 1) {
+    if (nextpage == 1 && isLoading == false) {
       statusRequest = StatusRequest.loading;
       update();
     } else {
@@ -64,7 +64,7 @@ class Mybookingforusercontroller extends GetxController {
       List responsedata = response['reservations'];
       reservations
           .addAll(responsedata.map((e) => GetReservationsModel.fromJson(e)));
-      print(reservations);
+      print(reservations.length);
     } else if (StatusRequest.serverFailure == statusRequest) {
       CustomShowDialog("183".tr);
     } else if (StatusRequest.offlineFailure == statusRequest) {

@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mydoctor/core/app_routes/approutes.dart';
+import 'package:mydoctor/core/helper/notificationshelper.dart';
+import 'package:mydoctor/core/sevices/sevices.dart';
 import 'package:mydoctor/core/utilies/assets.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
+import 'package:mydoctor/features/homeforclinic/controller/settingforcliniccontroller.dart';
 
 class Settingforclinicscreen extends StatelessWidget {
   const Settingforclinicscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => Settingforcliniccontroller());
+    MyServices myServices = Get.find();
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
@@ -101,36 +106,42 @@ class Settingforclinicscreen extends StatelessWidget {
                     ),
                   ),
                 )),
-            ListTile(
-              leading: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.grey.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.notifications,
-                    size: 30,
+            GetBuilder<Settingforcliniccontroller>(builder: (controler) {
+              return ListTile(
+                leading: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.grey.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.notifications,
+                      size: 30,
+                    ),
                   ),
                 ),
-              ),
-              title: Text(
-                "52".tr,
-                style: Styles.textStyle24.copyWith(
-                    fontWeight: FontWeight.bold, color: AppColors.primary),
-              ),
-              trailing: Switch(
-                inactiveTrackColor: Colors.grey,
-                inactiveThumbColor: Colors.black,
-                activeTrackColor: AppColors.grey.withOpacity(0.5),
-                activeColor: AppColors.primary,
-                onChanged: (val) {},
-                value: true,
-              ),
-            ),
+                title: Text(
+                  "52".tr,
+                  style: Styles.textStyle24.copyWith(
+                      fontWeight: FontWeight.bold, color: AppColors.primary),
+                ),
+                trailing: Switch(
+                  inactiveTrackColor: Colors.grey,
+                  inactiveThumbColor: Colors.black,
+                  activeTrackColor: AppColors.grey.withOpacity(0.5),
+                  activeColor: AppColors.primary,
+                  onChanged: (val) {
+                    controler.openAndcloseNotification(val);
+                  },
+                  value: FirebaseNotificationsHelper.isNotificationEnabled,
+                ),
+              );
+            }),
             ListTile(
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(AppRouter.kAboutusforclinicscreen);
+                },
                 title: Text(
                   "54".tr,
                   style: Styles.textStyle24.copyWith(
@@ -170,80 +181,82 @@ class Settingforclinicscreen extends StatelessWidget {
                     color: AppColors.wight,
                   ),
                 )),
-            ListTile(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        backgroundColor: AppColors.primary.withOpacity(0.5),
-                        title: Column(
-                          children: [
-                            const Icon(Icons.logout,
-                                size: 50, color: Colors.white), // Delete icon
-                            const SizedBox(height: 10),
-                            Text("120".tr,
-                                textAlign: TextAlign.center,
-                                style: Styles.textStyle24.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.wight)),
+            GetBuilder<Settingforcliniccontroller>(builder: (controller) {
+              return ListTile(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          backgroundColor: AppColors.primary.withOpacity(0.5),
+                          title: Column(
+                            children: [
+                              const Icon(Icons.logout,
+                                  size: 50, color: Colors.white), // Delete icon
+                              const SizedBox(height: 10),
+                              Text("120".tr,
+                                  textAlign: TextAlign.center,
+                                  style: Styles.textStyle24.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.wight)),
+                            ],
+                          ),
+                          actions: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: AppColors.primary),
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context); // Close dialog
+                                },
+                                child: Text("156".tr,
+                                    style: Styles.textStyle24.copyWith(
+                                        color: AppColors.red,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: AppColors.primary),
+                              child: TextButton(
+                                onPressed: () {
+                                  controller.logoutFromMyaccount();
+                                },
+                                child: Text("155".tr,
+                                    style: Styles.textStyle24.copyWith(
+                                        color: AppColors.wight,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ),
                           ],
-                        ),
-                        actions: [
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: AppColors.primary),
-                            child: TextButton(
-                              onPressed: () {
-                                Navigator.pop(context); // Close dialog
-                              },
-                              child: Text("156".tr,
-                                  style: Styles.textStyle24.copyWith(
-                                      color: AppColors.red,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: AppColors.primary),
-                            child: TextButton(
-                              onPressed: () {
-                                Get.offAllNamed(AppRouter.kSplashScreen);
-                              },
-                              child: Text("155".tr,
-                                  style: Styles.textStyle24.copyWith(
-                                      color: AppColors.wight,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
-                title: Text(
-                  "56".tr,
-                  style: Styles.textStyle24.copyWith(
-                      fontWeight: FontWeight.bold, color: AppColors.primary),
-                ),
-                leading: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.grey.withOpacity(0.4),
-                    borderRadius: BorderRadius.circular(10),
+                        );
+                      },
+                    );
+                  },
+                  title: Text(
+                    "56".tr,
+                    style: Styles.textStyle24.copyWith(
+                        fontWeight: FontWeight.bold, color: AppColors.primary),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.logout,
-                      size: 30,
+                  leading: Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.grey.withOpacity(0.4),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                  ),
-                )),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.logout,
+                        size: 30,
+                      ),
+                    ),
+                  ));
+            })
           ],
         ),
       ),

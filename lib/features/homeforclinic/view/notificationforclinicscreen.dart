@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:mydoctor/core/components/customanimationloading.dart';
+import 'package:mydoctor/core/functions/translatdatabase.dart';
 import 'package:mydoctor/core/utilies/assets.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
+import 'package:mydoctor/core/utilies/enum.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
+import 'package:mydoctor/features/homeforclinic/controller/notificationsforcliniccontroller.dart';
+import 'package:mydoctor/models/clinicmodels/notifications/clinicallnotificationsmodel.dart';
 
 class Notificationforclinicscreen extends StatelessWidget {
   const Notificationforclinicscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => Notificationsforcliniccontroller());
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
@@ -53,24 +59,34 @@ class Notificationforclinicscreen extends StatelessWidget {
           ),
         ),
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return const CustomNotificationsItemforclinic();
-              },
-              childCount: 3, // Number of items in the list
-            ),
-          )
-        ],
-      ),
+      body: GetBuilder<Notificationsforcliniccontroller>(builder: (controller) {
+        if (controller.statusRequest == StatusRequest.loading) {
+          return customAnimationLoading();
+        }
+        return CustomScrollView(
+          slivers: [
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return CustomNotificationsItemforclinic(
+                    model: controller.notifications[index],
+                  );
+                },
+                childCount: controller
+                    .notifications.length, // Number of items in the list
+              ),
+            )
+          ],
+        );
+      }),
     );
   }
 }
 
-class CustomNotificationsItemforclinic extends StatelessWidget {
-  const CustomNotificationsItemforclinic({super.key});
+class CustomNotificationsItemforclinic
+    extends GetView<Notificationsforcliniccontroller> {
+  final ClinicNotificationsModel model;
+  const CustomNotificationsItemforclinic({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +96,9 @@ class CustomNotificationsItemforclinic extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Colors.grey.shade200),
+            color: model.isRead == true
+                ? Colors.grey.shade200
+                : AppColors.primary),
         child: Padding(
           padding: const EdgeInsets.all(4.0),
           child: Column(
@@ -99,14 +117,19 @@ class CustomNotificationsItemforclinic extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        "153".tr,
-                        style: Styles.textStyle20
+                        "${translateDatabase(model.titleAr, model.titleEn)}",
+                        overflow: TextOverflow.ellipsis, // Allows wrapping
+                        maxLines: 1,
+                        softWrap: true,
+                        style: Styles.textStyle18
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.deleteNotification(model.id);
+                      },
                       icon: const Icon(
                         Icons.close,
                         color: Colors.red,
@@ -114,9 +137,12 @@ class CustomNotificationsItemforclinic extends StatelessWidget {
                 ],
               ),
               Text(
-                "173".tr,
+                "${translateDatabase(model.messageAr, model.messageEn)}",
                 style: Styles.textStyle16.copyWith(
-                    fontWeight: FontWeight.normal, color: AppColors.grey),
+                    fontWeight: FontWeight.normal,
+                    color: model.isRead == true
+                        ? AppColors.grey
+                        : AppColors.wight),
                 maxLines: 2,
               )
             ],

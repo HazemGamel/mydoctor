@@ -76,39 +76,28 @@ class Clinicsforuserscreen extends StatelessWidget {
           body: controller.statusRequest == StatusRequest.loading
               ? customAnimationLoading()
               : SafeArea(
-                  child: CustomScrollView(
-                  slivers: [
-                    SliverToBoxAdapter(
-                      child: SizedBox(
-                        height: MediaQuery.of(context)
-                            .size
-                            .height, // or any appropriate height
-                        child: ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: controller.clinics.length,
-                            controller: controller.scrollController,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Column(
-                                  children: [
-                                    CustomItemForClinics(
-                                      model: controller.clinics[index],
-                                    ),
-                                    Divider(
-                                      color: Colors.grey.shade300,
-                                      thickness: 1,
-                                      indent: 20,
-                                      endIndent: 20,
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }),
-                      ),
-                    ),
-                  ],
-                )));
+                  child: ListView.builder(
+                      //physics: const NeverScrollableScrollPhysics(),
+                      itemCount: controller.clinics.length,
+                      controller: controller.scrollController,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Column(
+                            children: [
+                              CustomItemForClinics(
+                                model: controller.clinics[index],
+                              ),
+                              Divider(
+                                color: Colors.grey.shade300,
+                                thickness: 1,
+                                indent: 20,
+                                endIndent: 20,
+                              ),
+                            ],
+                          ),
+                        );
+                      })));
     });
   }
 }
@@ -194,12 +183,12 @@ class CustomItemForClinics extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
-                child: Image.asset(
-              AppAssets.discountyellow,
-              height: 50,
-              width: 50,
-            ))
+            // Positioned(
+            //     child: Image.asset(
+            //   AppAssets.discountyellow,
+            //   height: 50,
+            //   width: 50,
+            // ))
           ],
         ),
       ),

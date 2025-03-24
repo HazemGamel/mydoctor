@@ -1,15 +1,23 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mydoctor/core/app_routes/approutes.dart';
+import 'package:mydoctor/core/components/customanimationloading.dart';
+import 'package:mydoctor/core/functions/translatdatabase.dart';
 import 'package:mydoctor/core/utilies/assets.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
+import 'package:mydoctor/core/utilies/enum.dart';
+import 'package:mydoctor/core/utilies/linkapi.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
+import 'package:mydoctor/features/homeforclinic/doctorsforclinics/controller/doctorsincliniccontroller.dart';
+import 'package:mydoctor/models/usermodels/clinics/getdoctorsinclinicmodel.dart';
 
 class Doctorsforclinicsscreen extends StatelessWidget {
   const Doctorsforclinicsscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.put(Doctorsincliniccontroller());
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
@@ -56,30 +64,40 @@ class Doctorsforclinicsscreen extends StatelessWidget {
           ),
         ),
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return const CustomItemForDoctorsInClinc();
-              },
-              childCount: 4, // Number of items in the list
+      body: GetBuilder<Doctorsincliniccontroller>(builder: (controller) {
+        if (controller.statusRequest == StatusRequest.loading) {
+          return customAnimationLoading();
+        }
+        return CustomScrollView(
+          slivers: [
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return CustomItemForDoctorsInClinc(
+                    model: controller.doctors[index],
+                  );
+                },
+                childCount:
+                    controller.doctors.length, // Number of items in the list
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        );
+      }),
     );
   }
 }
 
 class CustomItemForDoctorsInClinc extends StatelessWidget {
-  const CustomItemForDoctorsInClinc({super.key});
+  final DoctorsInClinicModel model;
+  const CustomItemForDoctorsInClinc({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRouter.kOrdersbellongdoctorsscreen);
+        Get.toNamed(AppRouter.kOrdersbellongdoctorsscreen,
+            arguments: {"id": model.id});
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -92,11 +110,21 @@ class CustomItemForDoctorsInClinc extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: Image.asset(
-                  AppAssets.clinicimage,
+                child: CachedNetworkImage(
+                  imageUrl: "${AppLinkAPi.images}/${model.image}",
                   height: 200,
                   width: double.infinity,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.cover, // Network image URL
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.primary,
+                    ),
+                  ), // Loading indicator
+                  errorWidget: (context, url, error) => const Icon(
+                    Icons.broken_image,
+                    size: 50,
+                    color: Colors.red,
+                  ), // Error widget
                 ),
               ),
               Container(
@@ -117,7 +145,7 @@ class CustomItemForDoctorsInClinc extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "162".tr,
+                        "${translateDatabase(model.nameAr, model.nameEn)}",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
@@ -126,7 +154,7 @@ class CustomItemForDoctorsInClinc extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "163".tr,
+                        "${translateDatabase(model.descriptionAr, model.descriptionEn)}",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(

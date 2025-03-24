@@ -210,7 +210,12 @@ class MyTranslation extends Translations {
           "202": "لقد تم الغاء طلبك بنجاح",
           "203": "تم حذف الحساب بنجاح",
           "204": "تم تسجيل الخروج بنجاح",
-          "205": "لا توجد بيانات"
+          "205": "لا توجد بيانات",
+          "206": "لا يوجد طلبات الان",
+          "207": "تم قبول الحجز بنجاح",
+          "208": "لقد تم رفض الحجز",
+          "209": "مقبول",
+          "210": "مرفوض"
         },
         "en": {
           "1": "Choose Language",
@@ -425,7 +430,12 @@ class MyTranslation extends Translations {
           "202": "Reservation deleted successfully",
           "203": "Account Deleted Successfully",
           "204": "Logged out successfully",
-          "205": "No results found"
+          "205": "No results found",
+          "206": "No Orders Available",
+          "207": "Reservation successfully accepted",
+          "208": "The reservation has been rejected.",
+          "209": "Accepted",
+          "210": "Rejected",
         }
       };
 }

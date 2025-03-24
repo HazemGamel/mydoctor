@@ -4,81 +4,104 @@ import 'package:mydoctor/core/app_routes/approutes.dart';
 import 'package:mydoctor/core/components/auth/custombuttonauth.dart';
 import 'package:mydoctor/core/components/auth/customtextformfield.dart';
 import 'package:mydoctor/core/components/auth/customtexttitle.dart';
+import 'package:mydoctor/core/components/customloading.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
+import 'package:mydoctor/core/utilies/enum.dart';
+import 'package:mydoctor/features/auth/clinic/controller/cliniglogincontroller.dart';
 
 class Clinicloginscreen extends StatelessWidget {
   const Clinicloginscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Stack(
+    Get.lazyPut(() => Cliniglogincontroller());
+    return GetBuilder<Cliniglogincontroller>(builder: (controller) {
+      return Scaffold(
+        body: SingleChildScrollView(
+          child: Form(
+            key: controller.clinicloginformkey,
+            child: Column(
               children: [
-                ClipPath(
-                  clipper: containerClipper(),
-                  child: Container(
-                    color: Colors.grey.withOpacity(0.5),
-                    height: 220,
-                  ),
+                Stack(
+                  children: [
+                    ClipPath(
+                      clipper: containerClipper(),
+                      child: Container(
+                        color: Colors.grey.withOpacity(0.5),
+                        height: 220,
+                      ),
+                    ),
+                    ClipPath(
+                      clipper: containerClipper(),
+                      child: Container(
+                        color: AppColors.primary,
+                        height: 200,
+                      ),
+                    ),
+                  ],
                 ),
-                ClipPath(
-                  clipper: containerClipper(),
-                  child: Container(
-                    color: AppColors.primary,
-                    height: 200,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomTextTitle(textTitle: "2".tr),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      CustomTextFormFieldAuth(
+                        myController: controller.phone,
+                        labelText: '14'.tr,
+                        hintText: "15".tr,
+                        iconData: Icons.phone,
+                        valid: (val) {
+                          if (val!.isEmpty) {
+                            return "181".tr;
+                          } else if (val.length < 9) {
+                            return "29".tr;
+                          }
+                          return null;
+                        },
+                        isNumber: true,
+                      ),
+                      CustomTextFormFieldAuth(
+                        myController: controller.password,
+                        labelText: '7'.tr,
+                        hintText: "8".tr,
+                        iconData: Icons.lock,
+                        valid: (val) {
+                          if (val!.isEmpty) {
+                            return "182".tr;
+                          } else if (val.length < 8) {
+                            return "30".tr;
+                          }
+                          return null;
+                        },
+                        isNumber: false,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      controller.statusRequest == StatusRequest.loading
+                          ? CustomLoading()
+                          : CustomButtonAuth(
+                              textlogin: "2".tr,
+                              onpress: () {
+                                controller.clinicLogin();
+                              },
+                            ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomTextTitle(textTitle: "2".tr),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  CustomTextFormFieldAuth(
-                    labelText: '5'.tr,
-                    hintText: "6".tr,
-                    iconData: Icons.email,
-                    valid: (String) {
-                      return null;
-                    },
-                    isNumber: false,
-                  ),
-                  CustomTextFormFieldAuth(
-                    labelText: '7'.tr,
-                    hintText: "8".tr,
-                    iconData: Icons.lock,
-                    valid: (String) {
-                      return null;
-                    },
-                    isNumber: false,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  CustomButtonAuth(
-                    textlogin: "2".tr,
-                    onpress: () {
-                      Get.offAllNamed(AppRouter.kMainHomeforclinicscreen);
-                    },
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
 

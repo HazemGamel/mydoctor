@@ -2,14 +2,21 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:mydoctor/core/components/customanimationloading.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
+import 'package:mydoctor/core/utilies/enum.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
+import 'package:mydoctor/features/homeforclinic/ordersbellongdoctor/controller/rejectedordersforonedoctorcontroller.dart';
+import 'package:mydoctor/features/homeforclinic/ordersbellongdoctor/controller/waitingordersforonedoctorcontroller.dart';
+import 'package:mydoctor/models/clinicmodels/ordersforalldoctors/ordersforalldoctorsmodel.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Rejectedordersfordoctorscreen extends StatelessWidget {
   const Rejectedordersfordoctorscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => Rejectedordersforonedoctorcontroller());
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
@@ -56,24 +63,49 @@ class Rejectedordersfordoctorscreen extends StatelessWidget {
           ),
         ),
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return const CustomItemForWaitingOrders();
-              },
-              childCount: 3, // Number of items in the list
-            ),
-          ),
-        ],
-      ),
+      body: GetBuilder<Rejectedordersforonedoctorcontroller>(
+          builder: (controller) {
+        if (controller.statusRequest == StatusRequest.loading) {
+          return customAnimationLoading();
+        }
+        if (controller.reservations.isEmpty) {
+          return Center(
+              child: Text(
+            "206".tr,
+            style: Styles.textStyle20,
+          ));
+        }
+        return ListView.builder(
+            // physics: const NeverScrollableScrollPhysics(),
+            itemCount: controller.reservations.length,
+            controller: controller.scrollController,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Column(
+                  children: [
+                    CustomItemForWaitingOrders(
+                      model: controller.reservations[index],
+                    ),
+                    Divider(
+                      color: Colors.grey.shade300,
+                      thickness: 1,
+                      indent: 20,
+                      endIndent: 20,
+                    ),
+                  ],
+                ),
+              );
+            });
+      }),
     );
   }
 }
 
 class CustomItemForWaitingOrders extends StatelessWidget {
-  const CustomItemForWaitingOrders({super.key});
+  final OrdersForAllDoctorsModel model;
+
+  const CustomItemForWaitingOrders({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -99,35 +131,35 @@ class CustomItemForWaitingOrders extends StatelessWidget {
             ),
           ],
         ),
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(8),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                const Icon(
-                  Icons.list_alt,
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  "98".tr,
-                  style: Styles.textStyle24.copyWith(
-                      fontWeight: FontWeight.bold, color: AppColors.black),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Expanded(
-                  child: Text(
-                    " : 1 ",
-                    style: Styles.textStyle24.copyWith(
-                        fontWeight: FontWeight.normal, color: AppColors.wight),
-                  ),
-                ),
-              ],
-            ),
+            // Row(
+            //   children: [
+            //     const Icon(
+            //       Icons.list_alt,
+            //     ),
+            //     const SizedBox(
+            //       width: 5,
+            //     ),
+            //     Text(
+            //       "98".tr,
+            //       style: Styles.textStyle24.copyWith(
+            //           fontWeight: FontWeight.bold, color: AppColors.black),
+            //     ),
+            //     const SizedBox(
+            //       width: 5,
+            //     ),
+            //     Expanded(
+            //       child: Text(
+            //         " : 1 ",
+            //         style: Styles.textStyle24.copyWith(
+            //             fontWeight: FontWeight.normal, color: AppColors.wight),
+            //       ),
+            //     ),
+            //   ],
+            // ),
             Row(
               children: [
                 const Icon(
@@ -146,7 +178,7 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    " : Ahmed Mohamed ",
+                    " : ${model.patient.name} ",
                     style: Styles.textStyle24.copyWith(
                         fontWeight: FontWeight.normal, color: AppColors.wight),
                   ),
@@ -163,7 +195,7 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                 ),
                 Text(
                   "14".tr,
-                  style: Styles.textStyle24.copyWith(
+                  style: Styles.textStyle18.copyWith(
                       fontWeight: FontWeight.bold, color: AppColors.black),
                 ),
                 const SizedBox(
@@ -175,16 +207,19 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          " : 1234567895",
+                          " : ${model.patient.phone}",
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: Styles.textStyle24.copyWith(
+                          style: Styles.textStyle18.copyWith(
                               fontWeight: FontWeight.normal,
                               color: AppColors.wight),
                         ),
                       ),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            await launchUrl(
+                                Uri.parse("tel:${model.patient.phone}"));
+                          },
                           icon: const Icon(
                             Icons.phone,
                             size: 30,
@@ -195,28 +230,28 @@ class CustomItemForWaitingOrders extends StatelessWidget {
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 40,
-                    width: 100,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: AppColors.wight),
-                        color: AppColors.primary),
-                    child: Center(
-                        child: Text(
-                      "179".tr,
-                      style:
-                          Styles.textStyle24.copyWith(color: AppColors.wight),
-                    )),
-                  ),
-                )
-              ],
-            )
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //   children: [
+            //     GestureDetector(
+            //       onTap: () {},
+            //       child: Container(
+            //         height: 40,
+            //         width: 100,
+            //         decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(20),
+            //             border: Border.all(color: AppColors.wight),
+            //             color: AppColors.primary),
+            //         child: Center(
+            //             child: Text(
+            //           "179".tr,
+            //           style:
+            //               Styles.textStyle24.copyWith(color: AppColors.wight),
+            //         )),
+            //       ),
+            //     )
+            //   ],
+            // )
           ],
         ),
       ),

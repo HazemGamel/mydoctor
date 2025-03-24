@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:mydoctor/biniding.dart';
 import 'package:mydoctor/core/app_routes/approutes.dart';
 import 'package:mydoctor/core/helper/notificationshelper.dart';

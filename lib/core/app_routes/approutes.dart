@@ -9,6 +9,7 @@ import 'package:mydoctor/features/auth/user/login/view/userloginverifiedotpscree
 import 'package:mydoctor/features/auth/user/register/view/registerverifiedotpscreen.dart';
 import 'package:mydoctor/features/auth/user/register/view/userregisterscreen.dart';
 import 'package:mydoctor/features/customerservice/view/customservicescreen.dart';
+import 'package:mydoctor/features/homeforclinic/aboutus/view/aboutusforclinicscreen.dart';
 import 'package:mydoctor/features/homeforclinic/doctorsforclinics/view/doctorsforclinicsscreen.dart';
 import 'package:mydoctor/features/homeforclinic/ordersbellongdoctor/view/acceptedordersfordoctorscreen.dart';
 import 'package:mydoctor/features/homeforclinic/ordersbellongdoctor/view/rejectedordersfordoctorscreen.dart';
@@ -110,6 +111,7 @@ class AppRouter {
   static const String kSearchscreen = '/kSearchscreen';
   //aboutus for user
   static const String kAboutusforuserscreen = '/kAboutusforuserscreen';
+  static const String kAboutusforclinicscreen = '/kAboutusforclinicscreen';
 }
 
 List<GetPage<dynamic>>? routes = [
@@ -329,6 +331,13 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRouter.kAboutusforuserscreen,
     page: () => const Aboutusforuserscreen(),
+    transition: Transition.rightToLeftWithFade, // Set default transition
+    transitionDuration: const Duration(milliseconds: 600),
+  ),
+
+  GetPage(
+    name: AppRouter.kAboutusforclinicscreen,
+    page: () => const Aboutusforclinicscreen(),
     transition: Transition.rightToLeftWithFade, // Set default transition
     transitionDuration: const Duration(milliseconds: 600),
   ),

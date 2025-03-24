@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:mydoctor/core/components/customanimationloading.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:mydoctor/core/utilies/enum.dart';
 
 import 'package:mydoctor/features/homeforuser/controller/mainhomeforuserscreencontroller.dart';
 
@@ -14,6 +16,9 @@ class MainHomeforuserscreen extends StatelessWidget {
     Get.put(MainHomeForUserScreenControllerImp());
     return GetBuilder<MainHomeForUserScreenControllerImp>(
         builder: (controller) {
+      if (controller.statusRequest == StatusRequest.loading) {
+        return customAnimationLoading();
+      }
       return Scaffold(
         body: controller.pages[controller.currentPage],
         bottomNavigationBar: GNav(
@@ -39,16 +44,24 @@ class MainHomeforuserscreen extends StatelessWidget {
             GButton(
               icon: Icons.notification_important,
               text: "69".tr,
-              leading: const badges.Badge(
+              leading: badges.Badge(
                 badgeContent: Text(
-                  '3', // Replace with dynamic value
-                  style: TextStyle(color: Colors.white, fontSize: 12),
+                  controller.notCount > 99
+                      ? '+99'
+                      : controller.notCount == 0
+                          ? "0"
+                          : '${controller.notCount}',
+                  style: const TextStyle(color: Colors.white, fontSize: 10),
                 ),
-                badgeStyle: badges.BadgeStyle(
+                badgeStyle: const badges.BadgeStyle(
                   badgeColor: Colors.red,
                   padding: EdgeInsets.all(6),
                 ),
-                child: Icon(Icons.notification_important),
+                child: const SizedBox(
+                  width: 24, // Ensure the badge has a valid width
+                  height: 24,
+                  child: Icon(Icons.notification_important),
+                ),
               ),
             ),
             GButton(

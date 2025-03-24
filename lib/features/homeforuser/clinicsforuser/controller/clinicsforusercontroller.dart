@@ -51,7 +51,7 @@ class Clinicsforusercontroller extends GetxController {
     var currentPosition = scrollController.position.pixels;
     var maxScrollLenght = scrollController.position.maxScrollExtent;
 
-    if (currentPosition >= 0.7 * maxScrollLenght) {
+    if (currentPosition == maxScrollLenght) {
       if (!isLoading) {
         isLoading = true;
         await getclinics(nextPage++);
@@ -63,7 +63,7 @@ class Clinicsforusercontroller extends GetxController {
 //get clinics base on spitializiton
 
   getclinics(nextpage) async {
-    if (nextpage == 1) {
+    if (nextpage == 1 && isLoading == false) {
       statusRequest = StatusRequest.loading;
       update();
     } else {

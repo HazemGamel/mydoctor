@@ -10,7 +10,6 @@ class Ordersbellongdoctorsscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
@@ -65,7 +64,10 @@ class Ordersbellongdoctorsscreen extends StatelessWidget {
               flex: 1,
               child: _buildStatusCard(
                 ontap: () {
-                  Get.toNamed(AppRouter.kWaitingordersfordoctorScreen);
+                  Get.toNamed(AppRouter.kWaitingordersfordoctorScreen,
+                      arguments: {
+                        "id": Get.arguments["id"],
+                      });
                 },
                 title: "170".tr,
                 color1: Colors.yellow.shade600,
@@ -78,7 +80,10 @@ class Ordersbellongdoctorsscreen extends StatelessWidget {
               flex: 1,
               child: _buildStatusCard(
                 ontap: () {
-                  Get.toNamed(AppRouter.kAcceptedordersfordoctorscreen);
+                  Get.toNamed(AppRouter.kAcceptedordersfordoctorscreen,
+                      arguments: {
+                        "id": Get.arguments["id"],
+                      });
                 },
                 title: "171".tr,
                 color1: Colors.green.shade600,
@@ -91,7 +96,10 @@ class Ordersbellongdoctorsscreen extends StatelessWidget {
               flex: 1,
               child: _buildStatusCard(
                 ontap: () {
-                  Get.toNamed(AppRouter.kRejectedordersfordoctorscreen);
+                  Get.toNamed(AppRouter.kRejectedordersfordoctorscreen,
+                      arguments: {
+                        "id": Get.arguments["id"],
+                      });
                 },
                 title: "172".tr,
                 color1: Colors.red.shade600,

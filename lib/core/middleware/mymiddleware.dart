@@ -10,6 +10,9 @@ class MyMiddleWare extends GetMiddleware {
 
   @override
   RouteSettings? redirect(String? route) {
+    if (myServices.sharedPreferences.getString("cliniclogged") == "3") {
+      return const RouteSettings(name: AppRouter.kMainHomeforclinicscreen);
+    }
     if (myServices.sharedPreferences.getString("userlogged") == "2") {
       return const RouteSettings(name: AppRouter.kMainHomeforuserscreen);
     }

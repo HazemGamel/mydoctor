@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mydoctor/core/sevices/sevices.dart';
 import 'package:mydoctor/core/utilies/assets.dart';
 import 'package:mydoctor/core/utilies/colors.dart';
+import 'package:mydoctor/core/utilies/linkapi.dart';
 import 'package:mydoctor/core/utilies/styles.dart';
 
 class Profileforclinicscreen extends StatelessWidget {
@@ -9,6 +11,7 @@ class Profileforclinicscreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MyServices myServices = Get.find();
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
@@ -68,9 +71,10 @@ class Profileforclinicscreen extends StatelessWidget {
                       color: AppColors.primary.withOpacity(0.5),
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    child: const CircleAvatar(
+                    child: CircleAvatar(
                       radius: 60,
-                      backgroundImage: AssetImage(AppAssets.myclinicimage),
+                      backgroundImage: NetworkImage(
+                          "${AppLinkAPi.images}/${myServices.sharedPreferences.getString("clinicimage")!}"),
                     ),
                   ),
                 ],
@@ -81,7 +85,9 @@ class Profileforclinicscreen extends StatelessWidget {
             // ),
             Center(
               child: Text(
-                "144".tr,
+                myServices.sharedPreferences.getString("lang") == "en"
+                    ? "${myServices.sharedPreferences.getString("clinicnameen")}"
+                    : "${myServices.sharedPreferences.getString("clinicnamear")}",
                 style: Styles.textStyle30,
               ),
             ),
@@ -119,7 +125,10 @@ class Profileforclinicscreen extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            "145".tr,
+                            myServices.sharedPreferences.getString("lang") ==
+                                    "en"
+                                ? "${myServices.sharedPreferences.getString("clinicaddressen")}"
+                                : "${myServices.sharedPreferences.getString("clinicaddressar")}",
                             style: Styles.textStyle16.copyWith(
                                 fontWeight: FontWeight.normal,
                                 color: AppColors.grey),
@@ -130,46 +139,46 @@ class Profileforclinicscreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey.shade200),
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.numbers,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                "180".tr,
-                                style: Styles.textStyle20
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            " 4 ",
-                            style: Styles.textStyle16.copyWith(
-                                fontWeight: FontWeight.normal,
-                                color: AppColors.grey),
-                            maxLines: 2,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.all(2.0),
+                //   child: Container(
+                //     width: double.infinity,
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(10),
+                //         color: Colors.grey.shade200),
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(4.0),
+                //       child: Column(
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         mainAxisSize: MainAxisSize.min,
+                //         children: [
+                //           Row(
+                //             children: [
+                //               const Icon(
+                //                 Icons.numbers,
+                //               ),
+                //               const SizedBox(
+                //                 width: 5,
+                //               ),
+                //               Text(
+                //                 "180".tr,
+                //                 style: Styles.textStyle20
+                //                     .copyWith(fontWeight: FontWeight.bold),
+                //               ),
+                //             ],
+                //           ),
+                //           Text(
+                //             " 4 ",
+                //             style: Styles.textStyle16.copyWith(
+                //                 fontWeight: FontWeight.normal,
+                //                 color: AppColors.grey),
+                //             maxLines: 2,
+                //           )
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             )
           ],
